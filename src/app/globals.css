@@ -1,26 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Caveat:wght@400;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
+  /* Default variables */
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0a0e14;
+  --card-bg: rgba(0, 0, 0, 0.03);
+  --border-color: rgba(0, 0, 0, 0.1);
+  --accent: #ff6b6b;
+  --accent-2: #feca57;
+  --accent-3: #48dbfb;
+
+  --text-primary: #0a0e14;
+  --text-secondary: #525252;
+  --text-muted: #a3a3a3;
+
+  --footer-bg: #f3f4f6;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Explicit Light Mode (same as root) */
+.light {
+  --background: #ffffff;
+  --foreground: #0a0e14;
+  --card-bg: rgba(0, 0, 0, 0.03);
+  --border-color: rgba(0, 0, 0, 0.1);
+  --accent: #ff6b6b;
+  --accent-2: #feca57;
+  --accent-3: #48dbfb;
+
+  --text-primary: #0a0e14;
+  --text-secondary: #525252;
+  --text-muted: #a3a3a3;
+
+  --footer-bg: #f8fafc;
+  /* Slate 50 */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Dark Mode Overrides */
+.dark {
+  --background: #0a0e14;
+  --foreground: #e6e8eb;
+  --card-bg: rgba(255, 255, 255, 0.02);
+  --border-color: rgba(255, 255, 255, 0.05);
+  --accent: #ff6b6b;
+  --accent-2: #feca57;
+  --accent-3: #48dbfb;
+
+  --text-primary: #e6e8eb;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+
+  --footer-bg: #000000;
+  /* Pure Black */
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  color: var(--text-primary);
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Outfit', -apple-system, sans-serif;
+  overflow-x: hidden;
+  transition: color 0.3s ease, background-color 0.3s ease;
+
+  /* Geometric Background Pattern */
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, var(--border-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border-color) 1px, transparent 1px);
+  background-position: center top;
+}
+
+/* Add a subtle radial fade to the grid so it's not overwhelming */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 0%, var(--background) 90%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Scroll margin for fixed navbar */
+section {
+  scroll-margin-top: 100px;
+}
+
+/* Custom Scrollbar - more personality */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0e14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff6b6b;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff5252;
+}
+
+/* Handwritten text utility */
+.handwritten {
+  font-family: 'Caveat', cursive;
+  line-height: 1.2;
+}
+
+/* Subtle paper texture */
+.paper-texture {
+  position: relative;
+}
+
+.paper-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Marker highlight effect */
+.highlight {
+  background: linear-gradient(104deg, rgba(254, 202, 87, 0) 0.9%, rgba(254, 202, 87, 0.3) 2.4%, rgba(254, 202, 87, 0.5) 5.8%, rgba(254, 202, 87, 0.3) 93%, rgba(254, 202, 87, 0.25) 96%, transparent 98%),
+    linear-gradient(183deg, rgba(254, 202, 87, 0) 0%, rgba(254, 202, 87, 0.3) 7.9%, transparent 15%);
+  padding: 0 0.25em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
