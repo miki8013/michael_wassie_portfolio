@@ -33,8 +33,9 @@ const Navbar = () => {
                     }}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    className="text-xl font-bold hover:scale-105 transition-transform cursor-pointer relative z-50"
+                    className="text-xl font-bold hover:scale-105 transition-transform cursor-pointer relative z-50 flex items-center gap-2"
                 >
+                    <img src="/micahelwassielogo.png" alt="MW Logo" className="h-10 w-10 object-contain" />
                     <span className="text-[var(--text-primary)]">Micheal Wassie</span>
                 </motion.a>
 

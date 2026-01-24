@@ -4,7 +4,8 @@ const Footer = () => {
             <div className="container mx-auto max-w-5xl">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
                     <div>
-                        <div className="text-lg font-bold">
+                        <div className="text-lg font-bold flex items-center gap-2 justify-center md:justify-start">
+                            <img src="/micahelwassielogo.png" alt="MW Logo" className="h-8 w-8 object-contain" />
                             <span className="text-[var(--text-primary)]">Micheal Wassie</span>
                         </div>
                     </div>
