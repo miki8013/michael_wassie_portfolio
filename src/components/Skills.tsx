@@ -19,7 +19,7 @@ const skillCategories = [
         title: "Backend & Database",
         icon: <Server className="text-[var(--accent-3)]" size={24} />,
         description: "Building scalable server-side logic and managing data efficiently.",
-        skills: ["Node.js", "Express.js", "MongoDB", "SQL", "Mongoose", "RESTful APIs"]
+        skills: ["Node.js", "Express.js", "MongoDB", "MySQL", "Mongoose", "RESTful APIs"]
     },
     {
         title: "Development Workflow",

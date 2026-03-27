@@ -45,24 +45,17 @@ const Hero = () => {
                         I build things for the web. Currently focused on creating full-stack applications that people actually want to use.
                     </p>
 
-                    {/* Tech stack - casual */}
-                    <div className="flex flex-wrap gap-3 items-center text-sm pt-2">
-                        <span className="text-[var(--text-muted)] w-full md:w-auto mb-1 md:mb-0">usually working with:</span>
-                        <span className="px-3 py-1 bg-[var(--accent)]/10 text-[var(--accent)] border-2 border-[var(--accent)]/20 rounded-md font-medium transform -rotate-1 hover:rotate-0 transition-transform cursor-cell">
-                            React
-                        </span>
-                        <span className="px-3 py-1 bg-[var(--accent-2)]/10 text-[var(--accent-2)] border-2 border-[var(--accent-2)]/20 rounded-md font-medium transform rotate-1 hover:rotate-0 transition-transform cursor-cell">
-                            Node.js
-                        </span>
-                        <span className="px-3 py-1 bg-[var(--accent-3)]/10 text-[var(--accent-3)] border-2 border-[var(--accent-3)]/20 rounded-md font-medium hover:scale-105 transition-transform cursor-cell">
-                            MongoDB
-                        </span>
-                        <span className="px-3 py-1 bg-purple-500/10 text-purple-400 border-2 border-purple-500/20 rounded-md font-medium transform -rotate-2 hover:rotate-0 transition-transform cursor-cell">
-                            TypeScript
-                        </span>
-                        <span className="px-3 py-1 bg-teal-500/10 text-teal-400 border-2 border-teal-500/20 rounded-md font-medium transform rotate-2 hover:rotate-0 transition-transform cursor-cell">
-                            Tailwind
-                        </span>
+                    {/* Tech stack - professional */}
+                    <div className="flex flex-wrap gap-2 items-center text-sm pt-2">
+                        <span className="text-[var(--text-muted)] text-xs uppercase tracking-widest font-semibold w-full md:w-auto mb-2 md:mb-0 md:mr-1">Core Stack</span>
+                        {["React", "Next.js", "Node.js", "TypeScript", "MongoDB", "MySQL", "Tailwind", "Capacitor"].map((tech) => (
+                            <span
+                                key={tech}
+                                className="px-3 py-1 bg-[var(--card-bg)] text-[var(--text-secondary)] border border-[var(--border-color)] rounded-sm text-xs font-medium tracking-wide hover:border-[var(--accent)]/60 hover:text-[var(--text-primary)] transition-all duration-200"
+                            >
+                                {tech}
+                            </span>
+                        ))}
                     </div>
 
                     {/* CTAs */}
