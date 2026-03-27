@@ -40,9 +40,9 @@ const Hero = () => {
                         </span>
                     </h1>
 
-                    {/* Casual intro */}
+                    {/* Professional intro */}
                     <p className="text-lg md:text-xl text-[var(--text-secondary)] max-w-2xl leading-relaxed">
-                        I build things for the web. Currently focused on creating full-stack applications that people actually want to use.
+                        I design and build scalable web and mobile applications. Focused on delivering clean, maintainable full-stack solutions that solve real problems.
                     </p>
 
                     {/* Tech stack - professional */}
@@ -62,11 +62,11 @@ const Hero = () => {
                     <div className="flex flex-wrap items-center gap-4 pt-6">
                         <motion.a
                             href="#projects"
-                            whileHover={{ scale: 1.02, rotate: -1 }}
+                            whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                             className="px-8 py-3 bg-[var(--accent)] hover:bg-[var(--accent)]/90 text-white font-bold rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-[var(--accent)]/20"
                         >
-                            check out my work
+                            View My Work
                             <ArrowRight size={18} />
                         </motion.a>
 

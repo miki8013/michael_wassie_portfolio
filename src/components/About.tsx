@@ -14,7 +14,7 @@ const About = () => {
                     {/* Intro */}
                     <div>
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-                            <span className="text-[var(--text-secondary)] handwritten text-3xl md:text-4xl block mb-2">a bit about me →</span>
+                            <span className="text-[var(--text-muted)] text-xs uppercase tracking-widest font-semibold block mb-3">About</span>
                             <span className="text-[var(--text-primary)]">Who I Am</span>
                         </h2>
                     </div>
@@ -63,15 +63,19 @@ const About = () => {
                         </motion.div>
                     </div>
 
-                    {/* Closing note */}
+                    {/* Availability */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: false }}
-                        className="pt-6"
+                        className="pt-6 flex items-center gap-3"
                     >
-                        <p className="text-[var(--text-secondary)] handwritten text-2xl">
-                            currently looking for new opportunities to build cool stuff with great teams
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                        </span>
+                        <p className="text-[var(--text-secondary)] text-sm">
+                            Open to full-time roles and freelance opportunities.
                         </p>
                     </motion.div>
                 </motion.div>
