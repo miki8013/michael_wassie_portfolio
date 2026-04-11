@@ -1,14 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Caveat:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Plus+Jakarta+Sans:wght@300;500;700;800&family=Unbounded:wght@400;700;900&display=swap');
 @import "tailwindcss";
 
 :root {
-  /* Professional Slate/Indigo Palette */
+  /* Font Families - Modularized for easy changes */
+  --font-main: 'Bungee', cursive;
+  --font-tech: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+
+  /* Professional Slate/Sky Blue Palette */
   --background: #ffffff;
   --foreground: #0f172a; /* Slate 900 */
   --card-bg: rgba(248, 250, 252, 0.8); /* Slate 50 with alpha */
   --border-color: rgba(226, 232, 240, 0.8); /* Slate 200 */
-  --accent: #6366f1; /* Indigo 500 */
-  --accent-secondary: #0ea5e9; /* Sky 500 */
+  --accent: #0ea5e9; /* Sky 500 */
+  --accent-secondary: #0284c7; /* Sky 600 */
   
   --text-primary: #0f172a; /* Slate 900 */
   --text-secondary: #475569; /* Slate 600 */
@@ -23,8 +28,8 @@
   --foreground: #0f172a;
   --card-bg: rgba(248, 250, 252, 0.8);
   --border-color: rgba(226, 232, 240, 1);
-  --accent: #6366f1;
-  --accent-secondary: #0ea5e9;
+  --accent: #0ea5e9;
+  --accent-secondary: #0284c7;
 
   --text-primary: #0f172a;
   --text-secondary: #475569;
@@ -33,14 +38,14 @@
   --footer-bg: #f8fafc;
 }
 
-/* Dark Mode Overrides - Premium Slate/Indigo */
+/* Dark Mode Overrides - Premium Slate/Sky Blue */
 .dark {
   --background: #020617; /* Slate 950 */
   --foreground: #f8fafc;
   --card-bg: rgba(15, 23, 42, 0.8); /* Slate 900 */
   --border-color: rgba(30, 41, 59, 0.5); /* Slate 800 */
-  --accent: #818cf8; /* Indigo 400 */
-  --accent-secondary: #38bdf8; /* Sky 400 */
+  --accent: #38bdf8; /* Sky 400 */
+  --accent-secondary: #7dd3fc; /* Sky 300 */
 
   --text-primary: #f8fafc;
   --text-secondary: #cbd5e1; /* Slate 300 */
@@ -188,4 +193,114 @@ section {
 
 .animate-cap-strokes {
   animation: cap-strokes 3s ease-out infinite;
+}
+
+/* Eccentric Professional Titles */
+.main-title {
+  font-family: var(--font-main);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.title-tag {
+  font-family: var(--font-tech);
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 1;
+}
+
+.tech-text {
+  font-family: var(--font-tech);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.stroke-text {
+  -webkit-text-stroke: 1px var(--text-primary);
+  text-shadow: none;
+}
+
+.dark .stroke-text {
+  -webkit-text-stroke: 1px var(--foreground);
+}
+
+.title-reveal {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.title-reveal::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  transform: translateX(-100%);
+  transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.title-reveal:hover::after {
+  transform: translateX(101%);
+}
+
+.title-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.group:hover .title-arrow {
+  transform: translate(4px, -4px) rotate(-45deg);
+}
+
+/* Border Beam Animation - Minimal & Surgical */
+@keyframes border-beam {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.border-beam-wrapper {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.border-beam-effect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280%; /* Slightly larger for better corner coverage */
+  height: 280%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 280deg,
+    var(--accent) 310deg,
+    #ffffff 330deg,
+    var(--accent) 350deg,
+    transparent 360deg
+  );
+  animation: border-beam 5s linear infinite; /* Slightly faster for more energy */
+  z-index: -1;
+  opacity: 1;
+  filter: blur(4px); /* Stronger glow/shimmer */
+}
+
+.card-inner-bg {
+  position: relative;
+  z-index: 10;
+  background: var(--background);
+  margin: 1.5px; /* The border thickness */
+  height: calc(100% - 3px);
+  width: calc(100% - 3px);
+  border-radius: inherit;
 }

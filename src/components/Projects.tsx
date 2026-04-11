@@ -29,8 +29,6 @@ const projects = [
             "/quickrunner/quickrunnerconatctus.png"
         ],
         link: "https://quickrunner.shop",
-        accent: "var(--accent)",
-        gradientClass: "bg-gradient-to-r from-orange-500 via-amber-300 to-orange-600 text-transparent bg-clip-text animate-swirl"
     },
     {
         title: "Fresh Fashion",
@@ -53,8 +51,6 @@ const projects = [
             "/freshfashion/photo20260411140524.jpg"
         ],
         link: "https://freshfashion.co",
-        accent: "var(--accent secondary)",
-        gradientClass: "bg-gradient-to-r from-emerald-400 via-green-300 to-teal-500 text-transparent bg-clip-text animate-swirl"
     },
     {
         title: "Zemen Events",
@@ -87,8 +83,6 @@ const projects = [
             "/zemenevents/zemenconatctus.png"
         ],
         link: "https://zemen-events.netlify.app",
-        accent: "var(--accent)",
-        gradientClass: "bg-gradient-to-r from-blue-500 via-cyan-300 to-blue-600 text-transparent bg-clip-text animate-swirl"
     }
 ];
 
@@ -97,61 +91,60 @@ const Projects = () => {
 
     return (
         <section id="projects" className="py-10 px-6 bg-[var(--background)]">
-            <div className="container mx-auto max-w-5xl">
-                <div className="mb-10">
+            <div className="container mx-auto max-w-6xl">
+                <div className="mb-12">
                         <motion.div
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6 }}
-                            className="space-y-4"
+                            className="space-y-1"
                         >
-                            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--text-primary)]">
-                                Featured Projects
-                            </h2>
-                        </motion.div>
-                    </div>
 
-                    <div className="space-y-8">
-                        {projects.map((project, i) => (
-                            <motion.div
-                                key={project.title}
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: 1 }}
-                                transition={{ duration: 0.5, delay: i * 0.1 }}
-                                viewport={{ once: true }}
-                                className="group relative cursor-pointer"
-                                onClick={() => setSelectedProject(project)}
-                            >
-                                {/* Asymmetric Gradient Border (fades out at bottom-right) */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-[var(--border-color)]/60 via-transparent to-transparent opacity-80 rounded-[2.5rem] -z-20" />
-                                
-                                {/* Frosted Glass Body (blends into the grid) */}
-                                <div className="absolute inset-[1px] bg-gradient-to-br from-[var(--card-bg)]/90 to-[var(--background)]/20 backdrop-blur-sm rounded-[2.5rem] -z-10 shadow-sm pointer-events-none" />
+                        <h2 className="main-title text-5xl md:text-7xl lg:text-8xl text-[var(--text-primary)]">
+                            Featured Projects
+                        </h2>
+                    </motion.div>
+                </div>
 
-                                <div className="p-8 md:p-12">
-                                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
-                                        <div className="flex-1 space-y-4">
-                                            <div className="space-y-1">
-                                                <h3 className={`text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight ${project.gradientClass || 'text-[var(--text-primary)]'}`}>
-                                                    {project.title}
-                                                </h3>
-                                            </div>
-                                            
-                                            <p className="text-[var(--text-secondary)] leading-relaxed text-lg lg:text-xl max-w-2xl font-medium">
-                                                {project.description}
-                                            </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    {projects.map((project, i) => (
+                        <motion.div
+                            key={project.title}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: i * 0.1 }}
+                            viewport={{ once: true }}
+                            className={`group relative cursor-pointer perspective-1000 ${i === 0 ? 'md:col-span-2' : ''}`}
+                            onClick={() => setSelectedProject(project)}
+                        >
+                            {/* 3D 'Thickness' Layer (The tearing edge) */}
+                            <div className="absolute inset-0 bg-[var(--border-color)]/20 rounded-2xl transform translate-x-3 translate-y-3 -z-20 transition-transform duration-500 group-hover:translate-x-5 group-hover:translate-y-5" />
+                            
+                            {/* Card Body with 3D Transform */}
+                            <div className="relative z-10 bg-[var(--card-bg)]/60 backdrop-blur-md border border-[var(--border-color)] rounded-2xl p-8 md:p-12 h-full flex flex-col justify-between transition-all duration-500 transform rotate-x-2 rotate-y-[-1deg] group-hover:rotate-x-4 group-hover:rotate-y-[-2deg] group-hover:-translate-y-2 group-hover:-translate-x-2 border-l-[12px]">
+                                <div className={`flex flex-col ${i === 0 ? 'md:flex-row md:items-center md:justify-between' : 'justify-start'} gap-8`}>
+                                    <div className="flex-1 space-y-4">
+                                        <div className="space-y-1">
+                                            <h3 className="main-title text-3xl md:text-4xl lg:text-5xl text-[var(--text-primary)] tracking-tight">
+                                                {project.title}
+                                            </h3>
                                         </div>
+                                        
+                                        <p className="text-[var(--text-secondary)] leading-relaxed font-medium text-base lg:text-lg max-w-2xl">
+                                            {project.description}
+                                        </p>
+                                    </div>
 
-                                        <div className="flex-shrink-0">
-                                            <div className="w-16 h-16 rounded-full border border-[var(--border-color)] flex items-center justify-center bg-[var(--card-bg)] text-[var(--text-primary)]">
-                                                <ArrowUpRight size={32} />
-                                            </div>
+                                    <div className={`flex-shrink-0 ${i !== 0 ? 'self-end' : ''}`}>
+                                        <div className="w-16 h-16 rounded-full border border-[var(--border-color)] flex items-center justify-center bg-[var(--card-bg)] text-[var(--text-primary)] group-hover:bg-[var(--accent)] group-hover:text-white transition-all duration-500">
+                                            <ArrowUpRight size={32} />
                                         </div>
                                     </div>
                                 </div>
-                            </motion.div>
-                        ))}
+                            </div>
+                        </motion.div>
+                    ))}
                     </div>
 
                 <motion.div

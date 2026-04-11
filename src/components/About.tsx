@@ -5,39 +5,63 @@ import { GraduationCap } from 'lucide-react';
 const About = () => {
     return (
         <section id="about" className="py-10 px-6 border-t border-[var(--border-color)]">
-            <div className="container mx-auto max-w-5xl">
+            <div className="container mx-auto max-w-6xl">
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="space-y-8"
                 >
-                    {/* Header */}
-                    <div>
-                        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--text-primary)]">
-                            My Story
-                        </h2>
-                    </div>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                        <div className="space-y-6">
+                            <div className="space-y-1">
 
-                    <div className="space-y-8">
+                                <h2 className="main-title text-5xl md:text-7xl lg:text-8xl text-[var(--text-primary)]">
+                                    My Story
+                                </h2>
+                            </div>
 
+                            <div className="space-y-4 text-[var(--text-secondary)] leading-relaxed text-lg font-medium">
+                                <p>
+                                    I'm Michael Wassie, a Full Stack Developer based in Ethiopia. My journey in technology 
+                                    is driven by a curiosity for how things work and a desire to create tools that make a difference.
+                                </p>
+                                <p>
+                                    With expertise across the modern web stack, I focus on performance, scalability, 
+                                    and most importantly, the user experience. Whether it's an e-commerce platform or 
+                                    a creative showcase, I aim for excellence in every line of code.
+                                </p>
+                            </div>
+                        </div>
 
-                        <div className="space-y-4 text-[var(--text-secondary)] leading-relaxed text-lg font-medium">
-                            <p>
-                                I'm Michael Wassie, a Full Stack Developer based in Ethiopia. My journey in technology 
-                                is driven by a curiosity for how things work and a desire to create tools that make a difference.
-                            </p>
-                            <p>
-                                With expertise across the modern web stack, I focus on performance, scalability, 
-                                and most importantly, the user experience. Whether it's an e commerce platform or 
-                                a creative showcase, I aim for excellence in every line of code.
-                            </p>
+                        {/* Impact & Languages Section - Unified */}
+                        <div className="hidden lg:block space-y-4 pt-12">
+                            <div className="border-y border-[var(--border-color)] py-16 flex flex-col items-center">
+                                <p className="text-4xl md:text-5xl font-bold text-[var(--text-primary)] leading-tight tracking-tighter text-center italic mb-12">
+                                    creating real <span className="text-[var(--accent)] not-italic underline decoration-2 underline-offset-8">impact</span> in the digital world.
+                                </p>
+                                
+                                <div className="space-y-4 text-center">
+                                    <h3 className="tech-text text-[10px] text-[var(--accent)] uppercase tracking-[0.5em] opacity-80">
+                                        Languages
+                                    </h3>
+                                    <div className="flex flex-wrap justify-center gap-x-10 gap-y-2">
+                                        <div className="flex items-baseline gap-3">
+                                            <span className="text-2xl font-bold text-[var(--text-primary)] tracking-tight">Amharic</span>
+                                            <span className="text-[10px] font-black text-[var(--text-muted)] uppercase tracking-widest">Native</span>
+                                        </div>
+                                        <div className="flex items-baseline gap-3">
+                                            <span className="text-2xl font-bold text-[var(--text-primary)] tracking-tight">English</span>
+                                            <span className="text-[10px] font-black text-[var(--text-muted)] uppercase tracking-widest">Professional</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     {/* Highlights */}
-                    <div className="grid md:grid-cols-2 gap-8 pt-6 border-t border-[var(--border-color)]">
+                    <div className="pt-6 border-t border-[var(--border-color)]">
                         <motion.div
                             initial={{ opacity: 0, x: -10 }}
                             whileInView={{ opacity: 1, x: 0 }}
@@ -58,23 +82,6 @@ const About = () => {
                                 <p className="text-[var(--text-primary)] font-bold text-xl">B.Sc. in Computer Science</p>
                             </div>
                             <p className="text-[var(--text-secondary)] font-medium">Unity University • GPA 3.55</p>
-                        </motion.div>
-
-                        <motion.div
-                            initial={{ opacity: 0, x: 10 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.3 }}
-                            className="space-y-2"
-                        >
-                            <div className="flex flex-wrap gap-x-6 gap-y-1">
-                                <span className="text-[var(--text-secondary)] font-semibold text-lg hover:text-[var(--accent-secondary)] transition-colors">
-                                    Amharic <span className="text-xs font-black text-[var(--text-muted)] ml-2 uppercase">Native</span>
-                                </span>
-                                <span className="text-[var(--text-secondary)] font-semibold text-lg hover:text-[var(--accent-secondary)] transition-colors">
-                                    English <span className="text-xs font-black text-[var(--text-muted)] ml-2 uppercase">Professional</span>
-                                </span>
-                            </div>
                         </motion.div>
                     </div>
 

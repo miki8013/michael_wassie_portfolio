@@ -32,15 +32,16 @@ const skillCategories = [
 const Skills = () => {
     return (
         <section id="skills" className="py-10 px-6 bg-[var(--background)]">
-            <div className="container mx-auto max-w-5xl">
+            <div className="container mx-auto max-w-6xl">
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7 }}
-                    className="mb-8"
+                    className="mb-10 space-y-1"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--text-primary)]">
+
+                    <h2 className="main-title text-5xl md:text-7xl lg:text-8xl text-[var(--text-primary)]">
                         Technical Skillset
                     </h2>
                 </motion.div>
@@ -53,34 +54,36 @@ const Skills = () => {
                             whileInView={{ opacity: 1 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             viewport={{ once: true }}
-                            className="relative p-8"
+                            className="border-beam-wrapper rounded-tl-[2rem] rounded-br-[4rem]"
                         >
-                            {/* Ethereal Half-Glass Wash (Fades into the grid) */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-[var(--card-bg)]/90 via-[var(--background)]/20 to-transparent backdrop-blur-sm rounded-tl-[2rem] rounded-br-[4rem] -z-10 border-t border-l border-[var(--border-color)]/50 shadow-sm" />
-
-                            <div className="flex items-center gap-4 mb-5">
-                                <div className="text-[var(--accent)] transition-colors duration-300">
-                                    {category.icon}
+                            {/* Animated Border Beam */}
+                            <div className="border-beam-effect" />
+                            
+                            <div className="card-inner-bg rounded-tl-[2rem] rounded-br-[4rem] p-8 lg:p-12">
+                                <div className="flex items-center gap-4 mb-5">
+                                    <div className="text-[var(--accent)] transition-colors duration-300">
+                                        {category.icon}
+                                    </div>
+                                    <h3 className="tech-text text-sm font-bold text-[var(--text-primary)]">
+                                        {category.title}
+                                    </h3>
                                 </div>
-                                <h3 className="text-xl font-bold text-[var(--text-primary)] tracking-tight">
-                                    {category.title}
-                                </h3>
-                            </div>
 
-                            <p className="text-[var(--text-secondary)] mb-6 text-[15px] leading-relaxed max-w-sm">
-                                {category.description}
-                            </p>
+                                <p className="text-[var(--text-secondary)] mb-6 text-[15px] leading-relaxed max-w-sm font-medium">
+                                    {category.description}
+                                </p>
 
-                            <div className="flex flex-wrap gap-x-6 gap-y-3">
-                                {category.skills.map((skill) => (
-                                    <span
-                                        key={skill}
-                                        className="text-sm text-[var(--text-secondary)] font-medium hover:text-[var(--accent)] transition-colors cursor-default flex items-center gap-2"
-                                    >
-                                        <span className="h-1 w-1 rounded-full bg-[var(--accent)]/40" />
-                                        {skill}
-                                    </span>
-                                ))}
+                                <div className="flex flex-wrap gap-x-6 gap-y-3">
+                                    {category.skills.map((skill) => (
+                                        <span
+                                            key={skill}
+                                            className="text-sm text-[var(--text-secondary)] font-medium hover:text-[var(--accent)] transition-colors cursor-default flex items-center gap-2"
+                                        >
+                                            <span className="h-1 w-1 rounded-full bg-[var(--accent)]/40" />
+                                            {skill}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
                         </motion.div>
                     ))}
