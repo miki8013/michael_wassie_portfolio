@@ -7,7 +7,25 @@ const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
-    const closeMenu = () => setIsMobileMenuOpen(false);
+    const closeMenuAndScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+        e.preventDefault();
+        setIsMobileMenuOpen(false);
+        
+        // Wait for menu closure transition, then scroll
+        setTimeout(() => {
+            const element = document.querySelector(id);
+            if (element) {
+                const offset = 100;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }, 300); // Wait for the AnimatePresence height transition
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -51,6 +69,7 @@ const Navbar = () => {
                         <motion.a
                             key={link.name}
                             href={link.href}
+                            onClick={(e) => closeMenuAndScroll(e, link.href)}
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.1 }}
@@ -99,7 +118,7 @@ const Navbar = () => {
                                 <a
                                     key={link.name}
                                     href={link.href}
-                                    onClick={closeMenu}
+                                    onClick={(e) => closeMenuAndScroll(e, link.href)}
                                     className="text-lg font-semibold text-[var(--text-secondary)] hover:text-[var(--accent)] py-3 px-4 rounded-xl hover:bg-[var(--accent)]/5 transition-all"
                                 >
                                     {link.name}
