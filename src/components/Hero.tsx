@@ -55,7 +55,7 @@ const Hero = () => {
 
                     {/* CTAs */}
                     <div className="flex flex-wrap items-center gap-4 pt-6">
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-3">
                             <motion.a
                                 href="#projects"
                                 className="px-6 md:px-8 py-3 bg-[var(--accent)] hover:bg-[var(--accent)]/90 text-white font-semibold rounded-full transition-all flex items-center gap-2 shadow-lg shadow-[var(--accent)]/20 whitespace-nowrap"
