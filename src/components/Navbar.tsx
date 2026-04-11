@@ -107,7 +107,7 @@ const Navbar = () => {
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 className="mt-2 w-full py-4 bg-[var(--accent)] text-white text-center font-bold rounded-2xl transition-all"
                             >
-                                View Resume
+                                Resume
                             </a>
                         </motion.div>
                     )}

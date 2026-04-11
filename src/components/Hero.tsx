@@ -71,7 +71,7 @@ const Hero = () => {
                             >
                                 <span className="absolute inset-[-1000%] animate-spin [animation-duration:2.5s] bg-[conic-gradient(from_90deg_at_50%_50%,var(--border-color)_0%,var(--accent)_50%,var(--border-color)_100%)] opacity-40 group-hover:opacity-80 transition-opacity duration-500" />
                                 <span className="inline-flex h-full w-full items-center justify-center rounded-full glass-effect px-5 md:px-6 py-3 text-[var(--text-primary)] font-semibold transition-colors gap-2 relative z-10">
-                                    View Resume
+                                    Resume
                                 </span>
                             </motion.a>
                         </div>
