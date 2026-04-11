@@ -4,24 +4,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
-    const [scrolled, setScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
 
-    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-        e.preventDefault();
-        const element = document.querySelector(href);
-        if (element) {
-            const offset = 100; // Account for fixed navbar
-            const elementPosition = element.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
-        setIsMobileMenuOpen(false);
-    };
+    const closeMenu = () => setIsMobileMenuOpen(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -65,7 +51,6 @@ const Navbar = () => {
                         <motion.a
                             key={link.name}
                             href={link.href}
-                            onClick={(e) => handleNavClick(e, link.href)}
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.1 }}
@@ -99,6 +84,8 @@ const Navbar = () => {
                     </button>
                 </div>
 
+                </div>
+
                 {/* Mobile Menu Overlay */}
                 <AnimatePresence>
                     {isMobileMenuOpen && (
@@ -106,13 +93,13 @@ const Navbar = () => {
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
-                            className="absolute top-0 left-0 w-full bg-[var(--background)] border-b border-[var(--border-color)] shadow-2xl p-6 pt-24 md:hidden flex flex-col gap-4 overflow-hidden"
+                            className="absolute top-0 left-0 w-full bg-[var(--background)] border border-[var(--border-color)] shadow-2xl p-6 pt-24 md:hidden flex flex-col gap-4 overflow-hidden rounded-[2rem] z-[40]"
                         >
                             {navLinks.map((link) => (
                                 <a
                                     key={link.name}
                                     href={link.href}
-                                    onClick={(e) => handleNavClick(e, link.href)}
+                                    onClick={closeMenu}
                                     className="text-lg font-semibold text-[var(--text-secondary)] hover:text-[var(--accent)] py-3 px-4 rounded-xl hover:bg-[var(--accent)]/5 transition-all"
                                 >
                                     {link.name}
@@ -129,8 +116,6 @@ const Navbar = () => {
                         </motion.div>
                     )}
                 </AnimatePresence>
-
-                </div>
             </div>
         </nav>
     );
