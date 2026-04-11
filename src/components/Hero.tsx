@@ -58,6 +58,16 @@ const Hero = () => {
                         <div className="flex items-center gap-3">
                             <motion.a
                                 href="#projects"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    const element = document.querySelector('#projects');
+                                    if (element) {
+                                        const offset = 100;
+                                        const elementPosition = element.getBoundingClientRect().top;
+                                        const offsetPosition = elementPosition + window.pageYOffset - offset;
+                                        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                                    }
+                                }}
                                 className="px-6 md:px-8 py-3 bg-[var(--accent)] hover:bg-[var(--accent)]/90 text-white font-semibold rounded-full transition-all flex items-center gap-2 shadow-lg shadow-[var(--accent)]/20 whitespace-nowrap"
                             >
                                 Explore Projects
