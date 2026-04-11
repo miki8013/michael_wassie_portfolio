@@ -6,9 +6,9 @@ import ThemeToggle from "@/components/ThemeToggle";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
-  title: "Micheal Wassie | Full Stack Developer",
-  description: "Portfolio of Micheal Wassie, a Detail oriented and adaptable Full Stack Software Developer specializing in MERN and Java.",
-  keywords: ["Micheal Wassie", "Software Developer", "Full Stack", "MERN", "Java", "Portfolio"],
+  title: "Michael Wassie | Full Stack Developer",
+  description: "Portfolio of Michael Wassie, a Detail oriented and adaptable Full Stack Software Developer specializing in MERN and Java.",
+  keywords: ["Michael Wassie", "Software Developer", "Full Stack", "MERN", "Java", "Portfolio"],
   icons: {
     icon: "/micahelwassielogo.ico",
     apple: "/micahelwassielogo.png",

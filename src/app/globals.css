@@ -2,56 +2,51 @@
 @import "tailwindcss";
 
 :root {
-  /* Default variables */
+  /* Professional Slate/Indigo Palette */
   --background: #ffffff;
-  --foreground: #0a0e14;
-  --card-bg: rgba(0, 0, 0, 0.03);
-  --border-color: rgba(0, 0, 0, 0.1);
-  --accent: #ff6b6b;
-  --accent-2: #feca57;
-  --accent-3: #48dbfb;
+  --foreground: #0f172a; /* Slate 900 */
+  --card-bg: rgba(248, 250, 252, 0.8); /* Slate 50 with alpha */
+  --border-color: rgba(226, 232, 240, 0.8); /* Slate 200 */
+  --accent: #6366f1; /* Indigo 500 */
+  --accent-secondary: #0ea5e9; /* Sky 500 */
+  
+  --text-primary: #0f172a; /* Slate 900 */
+  --text-secondary: #475569; /* Slate 600 */
+  --text-muted: #94a3b8; /* Slate 400 */
 
-  --text-primary: #0a0e14;
-  --text-secondary: #525252;
-  --text-muted: #a3a3a3;
-
-  --footer-bg: #f3f4f6;
+  --footer-bg: #f8fafc; /* Slate 50 */
 }
 
 /* Explicit Light Mode (same as root) */
 .light {
   --background: #ffffff;
-  --foreground: #0a0e14;
-  --card-bg: rgba(0, 0, 0, 0.03);
-  --border-color: rgba(0, 0, 0, 0.1);
-  --accent: #ff6b6b;
-  --accent-2: #feca57;
-  --accent-3: #48dbfb;
+  --foreground: #0f172a;
+  --card-bg: rgba(248, 250, 252, 0.8);
+  --border-color: rgba(226, 232, 240, 1);
+  --accent: #6366f1;
+  --accent-secondary: #0ea5e9;
 
-  --text-primary: #0a0e14;
-  --text-secondary: #525252;
-  --text-muted: #a3a3a3;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
 
   --footer-bg: #f8fafc;
-  /* Slate 50 */
 }
 
-/* Dark Mode Overrides */
+/* Dark Mode Overrides - Premium Slate/Indigo */
 .dark {
-  --background: #0a0e14;
-  --foreground: #e6e8eb;
-  --card-bg: rgba(255, 255, 255, 0.02);
-  --border-color: rgba(255, 255, 255, 0.05);
-  --accent: #ff6b6b;
-  --accent-2: #feca57;
-  --accent-3: #48dbfb;
+  --background: #020617; /* Slate 950 */
+  --foreground: #f8fafc;
+  --card-bg: rgba(15, 23, 42, 0.8); /* Slate 900 */
+  --border-color: rgba(30, 41, 59, 0.5); /* Slate 800 */
+  --accent: #818cf8; /* Indigo 400 */
+  --accent-secondary: #38bdf8; /* Sky 400 */
 
-  --text-primary: #e6e8eb;
-  --text-secondary: #9ca3af;
-  --text-muted: #6b7280;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1; /* Slate 300 */
+  --text-muted: #64748b; /* Slate 500 */
 
   --footer-bg: #000000;
-  /* Pure Black */
 }
 
 html {
@@ -64,21 +59,46 @@ body {
   font-family: 'Outfit', -apple-system, sans-serif;
   overflow-x: hidden;
   transition: color 0.3s ease, background-color 0.3s ease;
-
-  /* Geometric Background Pattern */
-  background-size: 40px 40px;
-  background-image:
-    linear-gradient(to right, var(--border-color) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--border-color) 1px, transparent 1px);
-  background-position: center top;
 }
 
-/* Add a subtle radial fade to the grid so it's not overwhelming */
+section {
+  scroll-margin-top: 100px;
+  position: relative;
+}
+
+/* Elevate the container so text stays above the grid */
+section > .container {
+  position: relative;
+  z-index: 10;
+}
+
+/* Faded fine-mesh grid background per section */
+section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(var(--foreground) 1px, transparent 1px),
+    linear-gradient(90deg, var(--foreground) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-attachment: fixed;
+  background-position: center top;
+  opacity: 0.06; /* Ethereal, definitively visible but extremely soft */
+  pointer-events: none;
+  z-index: 0; /* Render above section background */
+  
+  /* Premium Vignette Fade: Fades out softly on ALL sides (top, bottom, left, right) */
+  mask-image: radial-gradient(ellipse at 50% 50%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 20%, transparent 80%);
+}
+
+/* Subtle radial fade for depth */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at 50% 50%, transparent 0%, var(--background) 90%);
+  background: radial-gradient(circle at 50% 10%, var(--accent) 0.1%, transparent 35%);
+  opacity: 0.08;
   pointer-events: none;
   z-index: -1;
 }
@@ -88,49 +108,80 @@ section {
   scroll-margin-top: 100px;
 }
 
-/* Custom Scrollbar - more personality */
+/* Custom Scrollbar - Refined */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0e14;
+  background: var(--background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ff6b6b;
+  background: var(--border-color);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff5252;
+  background: var(--text-muted);
 }
 
-/* Handwritten text utility */
+/* Handwritten text utility - used sparingly for character */
 .handwritten {
   font-family: 'Caveat', cursive;
   line-height: 1.2;
 }
 
-/* Subtle paper texture */
-.paper-texture {
-  position: relative;
+/* Subtle depth utility - avoiding heavy borders */
+.glass-effect {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: var(--card-bg);
+  /* Removed aggressive border */
 }
 
-.paper-texture::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  border-radius: inherit;
-}
-
-/* Marker highlight effect */
+/* Refined Marker highlight effect */
 .highlight {
-  background: linear-gradient(104deg, rgba(254, 202, 87, 0) 0.9%, rgba(254, 202, 87, 0.3) 2.4%, rgba(254, 202, 87, 0.5) 5.8%, rgba(254, 202, 87, 0.3) 93%, rgba(254, 202, 87, 0.25) 96%, transparent 98%),
-    linear-gradient(183deg, rgba(254, 202, 87, 0) 0%, rgba(254, 202, 87, 0.3) 7.9%, transparent 15%);
-  padding: 0 0.25em;
+  background: linear-gradient(104deg, rgba(99, 102, 241, 0) 0.9%, rgba(99, 102, 241, 0.1) 2.4%, rgba(99, 102, 241, 0.15) 5.8%, rgba(99, 102, 241, 0.1) 93%, rgba(99, 102, 241, 0.05) 96%, transparent 98%),
+    linear-gradient(183deg, rgba(99, 102, 241, 0) 0%, rgba(99, 102, 241, 0.1) 7.9%, transparent 15%);
+  padding: 0 0.1em;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
+}
+
+/* Custom Swirling Animated Text Background */
+@keyframes swirl {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-swirl {
+  background-size: 200% auto;
+  animation: swirl 5s ease infinite;
+}
+
+/* Custom Icon Greeting Animation */
+@keyframes cap-lift {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  15% { transform: translateY(-4px) rotate(15deg); }
+  25% { transform: translateY(-4px) rotate(15deg); }
+  35% { transform: translateY(0) rotate(0); }
+}
+
+@keyframes cap-strokes {
+  0%, 100% { opacity: 0; transform: translateY(4px) scale(0.5); }
+  10% { opacity: 0; transform: translateY(4px) scale(0.5); }
+  15% { opacity: 1; transform: translateY(-2px) scale(1.1); }
+  25% { opacity: 0; transform: translateY(-6px) scale(0.9); }
+  30% { opacity: 0; transform: translateY(-6px) scale(0.9); }
+}
+
+.animate-cap-lift {
+  animation: cap-lift 3s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+  transform-origin: bottom right;
+}
+
+.animate-cap-strokes {
+  animation: cap-strokes 3s ease-out infinite;
 }

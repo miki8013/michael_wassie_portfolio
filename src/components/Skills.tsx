@@ -5,78 +5,79 @@ import { Code2, Layout, Server, Workflow } from 'lucide-react';
 const skillCategories = [
     {
         title: "Languages & Core",
-        icon: <Code2 className="text-[var(--accent)]" size={24} />,
-        description: "The fundamental technologies I use to build robust applications.",
-        skills: ["Java", "JavaScript (ES6+)", "TypeScript", "HTML5 & CSS3", "SQL"]
+        icon: <Code2 className="text-[var(--accent)]" size={22} />,
+        description: "Fundamental technologies for building modern, scalable applications.",
+        skills: ["Java", "JavaScript", "TypeScript", "SQL", "Go"]
     },
     {
         title: "Frontend Development",
-        icon: <Layout className="text-[var(--accent-2)]" size={24} />,
-        description: "Creating responsive, interactive, and accessible user interfaces.",
-        skills: ["React.js", "Next.js", "Tailwind CSS", "Framer Motion", "Capacitor", "Responsive Design"]
+        icon: <Layout className="text-[var(--accent)]" size={22} />,
+        description: "Crafting responsive and high-performance user interfaces.",
+        skills: ["React", "Next.js", "Tailwind CSS", "Redux", "Framer Motion"]
     },
     {
-        title: "Backend & Database",
-        icon: <Server className="text-[var(--accent-3)]" size={24} />,
-        description: "Building scalable server-side logic and managing data efficiently.",
-        skills: ["Node.js", "Express.js", "MongoDB", "MySQL", "Mongoose", "RESTful APIs"]
+        title: "Backend & Systems",
+        icon: <Server className="text-[var(--accent)]" size={22} />,
+        description: "Architecting secure server-side logic and robust databases.",
+        skills: ["Node.js", "Express", "MongoDB", "MySQL", "PostgreSQL"]
     },
     {
-        title: "Development Workflow",
-        icon: <Workflow className="text-[var(--text-primary)]" size={24} />,
-        description: "Tools I use for version control, deployment, and maintaining code quality.",
-        skills: ["Git & GitHub", "VS Code", "Vercel / Netlify", "Postman", "Agile/Scrum"]
+        title: "DevOps & Tools",
+        icon: <Workflow className="text-[var(--accent)]" size={22} />,
+        description: "Streamlining development workflows and ensuring code quality.",
+        skills: ["Git", "Docker", "CI/CD", "Vercel"]
     }
 ];
 
 const Skills = () => {
     return (
-        <section id="skills" className="py-24 px-6 bg-[var(--background)]">
-            <div className="container mx-auto max-w-6xl">
+        <section id="skills" className="py-10 px-6 bg-[var(--background)]">
+            <div className="container mx-auto max-w-5xl">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false }}
-                    className="mb-16 md:mb-24"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7 }}
+                    className="mb-8"
                 >
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
-                        <span className="text-[var(--text-secondary)] handwritten text-3xl md:text-4xl block mb-2">what I work with →</span>
-                        <span className="text-[var(--text-primary)]">Technical Expertise</span>
+                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--text-primary)]">
+                        Technical Skillset
                     </h2>
-                    <p className="text-[var(--text-secondary)] text-lg max-w-2xl">
-                        A deep dive into my technical toolbox. I focus on modern, scalable technologies to build efficient solutions.
-                    </p>
                 </motion.div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+ 
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
                     {skillCategories.map((category, index) => (
                         <motion.div
                             key={category.title}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                            viewport={{ once: false }}
-                            className="bg-[var(--card-bg)] border border-[var(--border-color)] p-8 rounded-2xl hover:border-[var(--accent)]/50 transition-colors group"
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            viewport={{ once: true }}
+                            className="relative p-8"
                         >
-                            <div className="flex items-center gap-4 mb-6">
-                                <div className="p-3 bg-[var(--background)] rounded-lg border border-[var(--border-color)] group-hover:scale-110 transition-transform">
+                            {/* Ethereal Half-Glass Wash (Fades into the grid) */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-[var(--card-bg)]/90 via-[var(--background)]/20 to-transparent backdrop-blur-sm rounded-tl-[2rem] rounded-br-[4rem] -z-10 border-t border-l border-[var(--border-color)]/50 shadow-sm" />
+
+                            <div className="flex items-center gap-4 mb-5">
+                                <div className="text-[var(--accent)] transition-colors duration-300">
                                     {category.icon}
                                 </div>
-                                <h3 className="text-2xl font-bold text-[var(--text-primary)]">
+                                <h3 className="text-xl font-bold text-[var(--text-primary)] tracking-tight">
                                     {category.title}
                                 </h3>
                             </div>
 
-                            <p className="text-[var(--text-secondary)] mb-6 min-h-[3rem]">
+                            <p className="text-[var(--text-secondary)] mb-6 text-[15px] leading-relaxed max-w-sm">
                                 {category.description}
                             </p>
 
-                            <div className="flex flex-wrap gap-2">
+                            <div className="flex flex-wrap gap-x-6 gap-y-3">
                                 {category.skills.map((skill) => (
                                     <span
                                         key={skill}
-                                        className="px-3 py-1.5 bg-[var(--background)] border border-[var(--border-color)] rounded-md text-sm text-[var(--text-secondary)] font-medium hover:text-[var(--text-primary)] hover:border-[var(--text-primary)] transition-all cursor-default"
+                                        className="text-sm text-[var(--text-secondary)] font-medium hover:text-[var(--accent)] transition-colors cursor-default flex items-center gap-2"
                                     >
+                                        <span className="h-1 w-1 rounded-full bg-[var(--accent)]/40" />
                                         {skill}
                                     </span>
                                 ))}
@@ -88,5 +89,6 @@ const Skills = () => {
         </section>
     );
 };
+
 
 export default Skills;

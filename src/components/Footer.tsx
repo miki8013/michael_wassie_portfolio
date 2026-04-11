@@ -1,3 +1,5 @@
+import { Heart } from 'lucide-react';
+
 const Footer = () => {
     return (
         <footer className="py-16 px-6 border-t border-[var(--border-color)] bg-[var(--footer-bg)]">
@@ -6,7 +8,7 @@ const Footer = () => {
                     <div>
                         <div className="text-lg font-bold flex items-center gap-2 justify-center md:justify-start">
                             <img src="/micahelwassielogo.png" alt="MW Logo" className="h-8 w-8 object-contain" />
-                            <span className="text-[var(--text-primary)]">Micheal Wassie</span>
+                            <span className="text-[var(--text-primary)]">Michael Wassie</span>
                         </div>
                     </div>
 
@@ -23,9 +25,12 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="mt-8 text-center">
-                    <p className="text-[var(--text-muted)] text-sm">
-                        © {new Date().getFullYear()} Micheal Wassie. All rights reserved.
+                <div className="mt-12 pt-8 border-t border-[var(--border-color)] flex flex-col items-center justify-center gap-2">
+                    <p className="text-[var(--text-muted)] text-sm font-medium flex items-center gap-1.5">
+                        Made with <Heart size={14} className="text-red-500 fill-red-500" /> by Michael Wassie
+                    </p>
+                    <p className="text-[var(--text-muted)]/60 text-xs">
+                        © {new Date().getFullYear()} All rights reserved.
                     </p>
                 </div>
             </div>
