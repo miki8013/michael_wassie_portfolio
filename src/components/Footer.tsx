@@ -1,4 +1,4 @@
-import { Heart } from 'lucide-react';
+import React from 'react';
 
 const Footer = () => {
     return (
@@ -26,8 +26,8 @@ const Footer = () => {
                 </div>
 
                 <div className="mt-12 pt-8 border-t border-[var(--border-color)] flex flex-col items-center justify-center gap-2">
-                    <p className="text-[var(--text-muted)] text-sm font-medium flex items-center gap-1.5">
-                        Made with <Heart size={14} className="text-red-500 fill-red-500" /> by Michael Wassie
+                    <p className="text-[var(--text-muted)] text-sm font-medium">
+                        Made by Michael Wassie
                     </p>
                     <p className="text-[var(--text-muted)]/60 text-xs">
                         © {new Date().getFullYear()} All rights reserved.

@@ -91,9 +91,9 @@ const Hero = () => {
             ref={containerRef}
             className="relative min-h-[70vh] flex items-center pt-36 md:pt-40 pb-16 overflow-hidden px-6"
         >
-            {/* GLOBAL MATRIX LENS - Follows Mouse across whole section */}
+            {/* Global Matrix Reveal Layer - Behind Text */}
             <motion.div
-                className="absolute inset-0 pointer-events-none z-40 overflow-hidden"
+                className="absolute inset-0 pointer-events-none z-0 overflow-hidden"
                 style={{
                     WebkitMaskImage: useMotionTemplate`radial-gradient(circle 300px at ${smoothedX}px ${smoothedY}px, black 35%, transparent 100%)`,
                     maskImage: useMotionTemplate`radial-gradient(circle 300px at ${smoothedX}px ${smoothedY}px, black 35%, transparent 100%)`,
