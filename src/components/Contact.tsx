@@ -24,10 +24,7 @@ const Contact = () => {
                             </span>
                         </h2>
                     </div>
-                    <p className="text-[var(--text-secondary)] text-lg md:text-2xl font-medium max-w-3xl mx-auto leading-relaxed">
-                        I'm currently open to new opportunities and collaborations. 
-                        My inbox is always open.
-                    </p>
+
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
                         <motion.a

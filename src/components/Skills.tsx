@@ -54,12 +54,12 @@ const Skills = () => {
                             whileInView={{ opacity: 1 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             viewport={{ once: true }}
-                            className="border-beam-wrapper rounded-tl-[2rem] rounded-br-[4rem]"
+                            className="border-beam-wrapper rounded-2xl"
                         >
                             {/* Animated Border Beam */}
                             <div className="border-beam-effect" />
                             
-                            <div className="card-inner-bg rounded-tl-[2rem] rounded-br-[4rem] p-8 lg:p-12">
+                            <div className="card-inner-bg rounded-2xl p-8 lg:p-12">
                                 <div className="flex items-center gap-4 mb-5">
                                     <div className="text-[var(--accent)] transition-colors duration-300">
                                         {category.icon}

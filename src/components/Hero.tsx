@@ -172,10 +172,10 @@ const Hero = () => {
                         </div>
 
                         {/* CTAs */}
-                        <div className="flex flex-wrap items-center justify-center gap-6 pt-6">
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6 w-full px-4 sm:px-0">
                             <motion.a
                                 href="#projects"
-                                className="px-10 py-5 bg-[var(--accent)] hover:bg-[var(--accent)]/90 text-white font-bold rounded-full transition-all flex items-center gap-3 shadow-xl shadow-[var(--accent)]/20 text-lg"
+                                className="w-full sm:w-auto px-8 py-4 bg-[var(--accent)] hover:bg-[var(--accent)]/90 text-white font-bold rounded-full transition-all flex items-center justify-center gap-3 shadow-xl shadow-[var(--accent)]/20 text-base md:text-lg"
                             >
                                 Explore Work
                                 <ArrowRight size={20} />
@@ -185,43 +185,15 @@ const Hero = () => {
                             <motion.div
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="border-beam-wrapper rounded-full group overflow-hidden"
+                                className="w-full sm:w-auto border-beam-wrapper rounded-full group overflow-hidden"
                             >
                                 <div className="border-beam-effect !animation-duration-[4s]" />
                                 <a
                                     href="/michael_wassie_resume.pdf"
                                     target="_blank"
-                                    className="card-inner-bg px-10 py-5 flex items-center justify-center text-[var(--text-primary)] font-bold rounded-full text-lg hover:text-[var(--accent)] transition-colors relative"
+                                    className="card-inner-bg px-8 py-4 flex items-center justify-center text-sky-600 dark:text-sky-400 font-bold rounded-full text-base md:text-lg bg-sky-50/80 dark:bg-sky-950/50 transition-all relative z-10"
                                 >
                                     <span className="relative z-20">Resume</span>
-                                    
-                                    {/* Scrolling Ambient Globs */}
-                                    <div className="absolute inset-x-0 bottom-0 h-1/2 overflow-hidden pointer-events-none z-10 opacity-30">
-                                        <motion.div
-                                            animate={{
-                                                x: [-100, 100],
-                                                scale: [1, 1.2, 1],
-                                            }}
-                                            transition={{
-                                                duration: 4,
-                                                repeat: Infinity,
-                                                ease: "easeInOut",
-                                            }}
-                                            className="absolute -bottom-4 -left-4 w-12 h-12 bg-[var(--accent)] rounded-full blur-xl"
-                                        />
-                                        <motion.div
-                                            animate={{
-                                                x: [100, -100],
-                                                scale: [1.2, 1, 1.2],
-                                            }}
-                                            transition={{
-                                                duration: 6,
-                                                repeat: Infinity,
-                                                ease: "easeInOut",
-                                            }}
-                                            className="absolute -bottom-6 -right-4 w-16 h-16 bg-[var(--accent)] rounded-full blur-xl"
-                                        />
-                                    </div>
                                 </a>
                             </motion.div>
 

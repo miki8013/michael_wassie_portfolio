@@ -79,17 +79,20 @@ const Navbar = () => {
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all group-hover:w-full opacity-0 group-hover:opacity-100" />
                         </motion.a>
                     ))}
-                    <motion.a
-                        href="/michael_wassie_resume.pdf"
-                        target="_blank"
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
+                    <motion.div
                         whileHover={{ y: -2 }}
                         whileTap={{ scale: 0.95 }}
-                        className="px-5 py-2 bg-[var(--accent)] text-white text-sm font-bold rounded-full hover:bg-[var(--accent)]/90 transition-all shadow-lg shadow-[var(--accent)]/20"
+                        className="border-beam-wrapper rounded-full group overflow-hidden"
                     >
-                        Resume
-                    </motion.a>
+                        <div className="border-beam-effect !animation-duration-[4s]" />
+                        <a
+                            href="/michael_wassie_resume.pdf"
+                            target="_blank"
+                            className="card-inner-bg px-5 py-2 flex items-center justify-center text-sky-600 dark:text-sky-400 font-bold rounded-full text-sm bg-sky-50 dark:bg-sky-950/50 transition-all relative z-10"
+                        >
+                            <span className="relative z-20">Resume</span>
+                        </a>
+                    </motion.div>
                 </div>
 
                 {/* Mobile Menu Toggle */}
@@ -124,14 +127,20 @@ const Navbar = () => {
                                     {link.name}
                                 </a>
                             ))}
-                            <a
-                                href="/michael_wassie_resume.pdf"
-                                target="_blank"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className="mt-2 w-full py-4 bg-[var(--accent)] text-white text-center font-bold rounded-2xl transition-all"
+                            <motion.div
+                                whileTap={{ scale: 0.95 }}
+                                className="mt-2 w-full border-beam-wrapper rounded-[1.5rem] group overflow-hidden"
                             >
-                                Resume
-                            </a>
+                                <div className="border-beam-effect !animation-duration-[4s]" />
+                                <a
+                                    href="/michael_wassie_resume.pdf"
+                                    target="_blank"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="card-inner-bg w-full py-4 flex items-center justify-center text-sky-600 dark:text-sky-400 font-bold rounded-[1.5rem] bg-sky-50 dark:bg-sky-950/50 transition-all relative z-10"
+                                >
+                                    <span className="relative z-20">Resume</span>
+                                </a>
+                            </motion.div>
                         </motion.div>
                     )}
                 </AnimatePresence>

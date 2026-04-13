@@ -85,17 +85,7 @@ const About = () => {
                         </motion.div>
                     </div>
 
-                    {/* Status */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="py-2"
-                    >
-                        <p className="text-[var(--text-secondary)] text-sm font-medium">
-                            Currently available for new projects and collaborations.
-                        </p>
-                    </motion.div>
+
                 </motion.div>
             </div>
         </section>
