@@ -181,21 +181,15 @@ const Hero = () => {
                                 <ArrowRight size={20} />
                             </motion.a>
 
-                            {/* Shimmering Resume Button */}
-                            <motion.div
+                            <motion.a
+                                href="/michael_wassie_resume.pdf"
+                                target="_blank"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="w-full sm:w-auto border-beam-wrapper rounded-full group overflow-hidden"
+                                className="w-full sm:w-auto px-8 py-4 flex items-center justify-center text-sky-600 dark:text-sky-400 font-bold rounded-full text-base md:text-lg bg-sky-50 dark:bg-sky-950/50 border border-sky-200 dark:border-sky-800 transition-all shadow-sm hover:shadow-md"
                             >
-                                <div className="border-beam-effect !animation-duration-[4s]" />
-                                <a
-                                    href="/michael_wassie_resume.pdf"
-                                    target="_blank"
-                                    className="card-inner-bg px-8 py-4 flex items-center justify-center text-sky-600 dark:text-sky-400 font-bold rounded-full text-base md:text-lg bg-sky-50/80 dark:bg-sky-950/50 transition-all relative z-10"
-                                >
-                                    <span className="relative z-20">Resume</span>
-                                </a>
-                            </motion.div>
+                                Resume
+                            </motion.a>
 
                             <div className="flex items-center gap-6 pl-4 border-l border-[var(--border-color)]">
                                 <a
