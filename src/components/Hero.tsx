@@ -186,7 +186,7 @@ const Hero = () => {
                                 target="_blank"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="w-full sm:w-auto px-8 py-4 flex items-center justify-center text-sky-600 dark:text-sky-400 font-bold rounded-full text-base md:text-lg bg-sky-50 dark:bg-sky-950/50 border border-sky-200 dark:border-sky-800 transition-all shadow-sm hover:shadow-md"
+                                className="w-full sm:w-auto px-8 py-4 flex items-center justify-center text-sky-600 font-bold rounded-full text-base md:text-lg bg-white border border-sky-200 transition-all shadow-sm hover:shadow-md"
                             >
                                 Resume
                             </motion.a>
