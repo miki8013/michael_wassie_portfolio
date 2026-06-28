@@ -1,0 +1,22 @@
+/* TEAM */
+  Developer: Michael Wassie
+  Contact: wassiemiki@gmail.com
+  Twitter: @miki8013
+  Location: Addis Ababa, Ethiopia
+  GitHub: https://github.com/miki8013
+  LinkedIn: https://www.linkedin.com/in/michael-wassie-1a779734b
+
+/* SITE */
+  Last update: 2026
+  Language: English
+  Doctype: HTML5
+  Standards: HTML5, CSS3, JavaScript (ES6+), TypeScript
+  Components: React, Next.js, Tailwind CSS, Framer Motion
+  Backend: Node.js, Express, MongoDB, MySQL, PostgreSQL
+  Tools: Git, Docker, CI/CD
+
+/* TECHNOLOGIES */
+  Frontend: React, Next.js, TypeScript, Tailwind CSS, Redux, Framer Motion
+  Backend: Node.js, Express, Java, Go
+  Database: MongoDB, MySQL, PostgreSQL
+  DevOps: Git, Docker, CI/CD, Vercel
