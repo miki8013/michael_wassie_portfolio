@@ -2,7 +2,7 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Skills from '@/components/Skills';
-import LocalSolutions from '@/components/LocalSolutions';
+import Services from '@/components/LocalSolutions';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
@@ -44,7 +44,7 @@ export default function Home() {
       <Hero />
       <About />
       <Skills />
-      <LocalSolutions />
+      <Services />
       <Projects />
       <Contact />
       <Footer />

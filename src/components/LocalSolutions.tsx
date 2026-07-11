@@ -1,8 +1,26 @@
 "use client";
 import { motion } from 'framer-motion';
-import { CreditCard, Smartphone, Shield, Globe } from 'lucide-react';
+import { CreditCard, Smartphone, Shield, Globe, Wrench, Globe2, Monitor } from 'lucide-react';
 
-const paymentSolutions = [
+const services = [
+    {
+        title: "Website Development",
+        icon: <Globe2 className="text-[var(--accent)]" size={22} />,
+        description: "Modern, responsive websites built with the latest technologies. From landing pages to complex web applications.",
+        features: ["Responsive Design", "SEO Optimized", "Fast Performance", "Modern UI/UX"]
+    },
+    {
+        title: "Mobile Applications",
+        icon: <Smartphone className="text-[var(--accent)]" size={22} />,
+        description: "Cross-platform mobile applications using Flutter and React Native. Native performance for iOS and Android.",
+        features: ["Flutter Development", "React Native", "Cross-Platform", "App Store Deployment"]
+    },
+    {
+        title: "Technology Solutions",
+        icon: <Wrench className="text-[var(--accent)]" size={22} />,
+        description: "Comprehensive technology solutions to streamline your business operations and improve efficiency.",
+        features: ["System Integration", "API Development", "Cloud Solutions", "Technical Consulting"]
+    },
     {
         title: "Chapa Integration",
         icon: <CreditCard className="text-[var(--accent)]" size={22} />,
@@ -23,58 +41,57 @@ const paymentSolutions = [
     }
 ];
 
-const LocalSolutions = () => {
+const Services = () => {
     return (
-        <section id="local-solutions" className="py-10 px-6 bg-[var(--background)]">
+        <section id="services" className="py-10 px-6 bg-[var(--background)] border-t border-[var(--border-color)]">
             <div className="container mx-auto max-w-6xl">
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7 }}
-                    className="mb-10 space-y-1"
+                    className="mb-10 space-y-1 text-center"
                 >
                     <h2 className="main-title text-5xl md:text-7xl lg:text-8xl text-[var(--text-primary)]">
-                        Local Payment Solutions
+                        Services
                     </h2>
-                    <p className="text-[var(--text-secondary)] text-lg font-medium max-w-2xl mt-4">
-                        Help integrate local payment solutions in your websites and applications for seamless transactions across Africa.
+                    <p className="text-[var(--text-secondary)] text-lg font-medium max-w-2xl mx-auto mt-4">
+                        What I can build for your business
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {paymentSolutions.map((solution, index) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {services.map((service, index) => (
                         <motion.div
-                            key={solution.title}
+                            key={service.title}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             viewport={{ once: true }}
-                            className="border-beam-wrapper rounded-2xl"
+                            className="group relative bg-gradient-to-br from-[var(--card-bg)] to-[var(--card-bg)]/50 border border-[var(--border-color)] rounded-2xl p-8 hover:border-[var(--accent)] hover:shadow-2xl hover:shadow-[var(--accent)]/10 transition-all duration-300"
                         >
-                            <div className="border-beam-effect" />
+                            <div className="absolute inset-0 bg-gradient-to-r from-[var(--accent)]/0 via-[var(--accent)]/5 to-[var(--accent)]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
                             
-                            <div className="card-inner-bg rounded-2xl p-8">
-                                <div className="flex items-center gap-4 mb-5">
+                            <div className="relative z-10">
+                                <div className="w-14 h-14 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center mb-6 group-hover:bg-[var(--accent)]/20 transition-colors duration-300">
                                     <div className="text-[var(--accent)] transition-colors duration-300">
-                                        {solution.icon}
+                                        {service.icon}
                                     </div>
-                                    <h3 className="tech-text text-sm font-bold text-[var(--text-primary)]">
-                                        {solution.title}
-                                    </h3>
                                 </div>
 
+                                <h3 className="text-xl font-bold text-[var(--text-primary)] mb-4 group-hover:text-[var(--accent)] transition-colors duration-300">
+                                    {service.title}
+                                </h3>
+
                                 <p className="text-[var(--text-secondary)] mb-6 text-[15px] leading-relaxed font-medium">
-                                    {solution.description}
+                                    {service.description}
                                 </p>
 
-                                <div className="space-y-3">
-                                    {solution.features.map((feature) => (
-                                        <div key={feature} className="flex items-center gap-3">
-                                            <Shield size={14} className="text-[var(--accent)]/60" />
-                                            <span className="text-sm text-[var(--text-secondary)] font-medium">
-                                                {feature}
-                                            </span>
+                                <div className="space-y-2">
+                                    {service.features.map((feature) => (
+                                        <div key={feature} className="flex items-center gap-2 text-sm text-[var(--text-secondary)]">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]/60" />
+                                            <span>{feature}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -99,4 +116,4 @@ const LocalSolutions = () => {
     );
 };
 
-export default LocalSolutions;
+export default Services;

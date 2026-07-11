@@ -133,15 +133,22 @@ const Projects = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: i * 0.1 }}
                             viewport={{ once: true }}
-                            className={`group relative cursor-pointer perspective-1000 ${i === 0 ? 'md:col-span-2' : ''}`}
+                            className={`group relative cursor-pointer perspective-1000 ${i === 0 || i === 3 ? 'md:col-span-2' : ''}`}
                             onClick={() => setSelectedProject(project)}
                         >
+                            {/* Color Blobs */}
+                            <div className="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--accent)]/20 rounded-full blur-3xl animate-pulse" />
+                                <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-500/20 rounded-full blur-2xl" />
+                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl" />
+                            </div>
+
                             {/* 3D 'Thickness' Layer (The tearing edge) */}
                             <div className="absolute inset-0 bg-[var(--border-color)]/20 rounded-2xl transform translate-x-3 translate-y-3 -z-20 transition-transform duration-500 group-hover:translate-x-5 group-hover:translate-y-5" />
                             
-                            {/* Card Body with 3D Transform */}
-                            <div className="relative z-10 bg-[var(--card-bg)]/60 backdrop-blur-md border border-[var(--border-color)] rounded-2xl p-8 md:p-12 h-full flex flex-col justify-between transition-all duration-500 transform rotate-x-2 rotate-y-[-1deg] group-hover:rotate-x-4 group-hover:rotate-y-[-2deg] group-hover:-translate-y-2 group-hover:-translate-x-2 border-l-[12px]">
-                                <div className={`flex flex-col ${i === 0 ? 'md:flex-row md:items-center md:justify-between' : 'justify-start'} gap-8`}>
+                            {/* Card Body with Glass Effect */}
+                            <div className="relative z-10 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 h-full flex flex-col justify-between transition-all duration-500 transform rotate-x-2 rotate-y-[-1deg] group-hover:rotate-x-4 group-hover:rotate-y-[-2deg] group-hover:-translate-y-2 group-hover:-translate-x-2 border-l-[12px] shadow-2xl shadow-black/20">
+                                <div className={`flex flex-col ${i === 0 || i === 3 ? 'md:flex-row md:items-center md:justify-between' : 'justify-start'} gap-8`}>
                                     <div className="flex-1 space-y-4">
                                         <div className="space-y-1">
                                             <h3 className="main-title text-3xl md:text-4xl lg:text-5xl text-[var(--text-primary)] tracking-tight">
@@ -154,7 +161,7 @@ const Projects = () => {
                                         </p>
                                     </div>
 
-                                    <div className={`flex-shrink-0 ${i !== 0 ? 'self-end' : ''}`}>
+                                    <div className={`flex-shrink-0 ${i !== 0 && i !== 3 ? 'self-end' : ''}`}>
                                         <div className="w-16 h-16 rounded-full border border-[var(--border-color)] flex items-center justify-center bg-[var(--card-bg)] text-[var(--text-primary)] group-hover:bg-[var(--accent)] group-hover:text-white transition-all duration-500">
                                             <ArrowUpRight size={32} />
                                         </div>

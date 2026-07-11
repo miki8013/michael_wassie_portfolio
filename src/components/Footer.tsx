@@ -1,14 +1,48 @@
 import React from 'react';
+import { GraduationCap } from 'lucide-react';
 
 const Footer = () => {
     return (
         <footer className="py-16 px-6 border-t border-[var(--border-color)] bg-[var(--footer-bg)]">
             <div className="container mx-auto max-w-5xl">
-                <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
-                    <div>
+                <div className="flex flex-col md:flex-row justify-between items-start gap-12 text-center md:text-left">
+                    <div className="flex-1 space-y-6">
                         <div className="text-lg font-bold flex items-center gap-2 justify-center md:justify-start">
                             <img src="/micahelwassielogo.png" alt="MW Logo" className="h-8 w-8 object-contain" />
                             <span className="text-[var(--text-primary)]">Michael Wassie</span>
+                        </div>
+
+                        {/* Education */}
+                        <div className="space-y-2">
+                            <div className="flex items-center gap-3 justify-center md:justify-start">
+                                <div className="relative w-8 h-8 flex items-center justify-center">
+                                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 flex gap-1 animate-cap-strokes pointer-events-none">
+                                        <div className="w-[3px] h-2 bg-[var(--accent)] rounded-full -rotate-[25deg] translate-y-1" />
+                                        <div className="w-[3px] h-2.5 bg-[var(--accent)] rounded-full -translate-y-0.5" />
+                                        <div className="w-[3px] h-2 bg-[var(--accent)] rounded-full rotate-[25deg] translate-y-1" />
+                                    </div>
+                                    <GraduationCap size={24} className="text-[var(--accent)] animate-cap-lift relative z-10" />
+                                </div>
+                                <p className="text-[var(--text-primary)] font-bold">B.Sc. in Computer Science</p>
+                            </div>
+                            <p className="text-[var(--text-secondary)] text-sm">Unity University • GPA 3.55</p>
+                        </div>
+
+                        {/* Languages */}
+                        <div className="space-y-3">
+                            <h3 className="tech-text text-[10px] text-[var(--accent)] uppercase tracking-[0.5em] opacity-80">
+                                Languages
+                            </h3>
+                            <div className="flex flex-wrap gap-x-8 gap-y-2 justify-center md:justify-start">
+                                <div className="flex items-baseline gap-2">
+                                    <span className="text-lg font-bold text-[var(--text-primary)]">Amharic</span>
+                                    <span className="text-[10px] font-black text-[var(--text-muted)] uppercase tracking-widest">Native</span>
+                                </div>
+                                <div className="flex items-baseline gap-2">
+                                    <span className="text-lg font-bold text-[var(--text-primary)]">English</span>
+                                    <span className="text-[10px] font-black text-[var(--text-muted)] uppercase tracking-widest">Professional</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

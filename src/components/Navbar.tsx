@@ -38,6 +38,7 @@ const Navbar = () => {
     const navLinks = [
         { name: 'About', href: '#about' },
         { name: 'Skills', href: '#skills' },
+        { name: 'Services', href: '#services' },
         { name: 'Projects', href: '#projects' },
         { name: 'Contact', href: '#contact' },
     ];
@@ -82,9 +83,9 @@ const Navbar = () => {
                     <motion.a
                         href="/michael_wassie_resume.pdf"
                         target="_blank"
-                        whileHover={{ y: -2 }}
+                        whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="px-5 py-2 flex items-center justify-center text-sky-600 font-bold rounded-full text-sm bg-white border border-sky-200 transition-all hover:shadow-sm"
+                        className="px-5 py-2 flex items-center justify-center text-sky-600 font-bold rounded-full text-sm bg-white border border-sky-200 transition-all shadow-sm hover:shadow-md"
                     >
                         Resume
                     </motion.a>

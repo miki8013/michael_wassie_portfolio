@@ -1,6 +1,6 @@
 "use client";
 import { motion } from 'framer-motion';
-import { Code2, Layout, Server, Workflow } from 'lucide-react';
+import { Code2, Layout, Server, Workflow, Building2 } from 'lucide-react';
 
 const skillCategories = [
     {
@@ -20,6 +20,12 @@ const skillCategories = [
         icon: <Server className="text-[var(--accent)]" size={22} />,
         description: "Architecting secure server-side logic and robust databases.",
         skills: ["Node.js", "Express", "MongoDB", "MySQL", "PostgreSQL"]
+    },
+    {
+        title: "Business Solutions",
+        icon: <Building2 className="text-[var(--accent)]" size={22} />,
+        description: "Enterprise resource planning and customer relationship management expertise.",
+        skills: ["CRM Specialist", "Odoo Expert", "ERP Implementation", "Business Process Optimization"]
     },
     {
         title: "DevOps & Tools",
