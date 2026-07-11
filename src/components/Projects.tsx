@@ -83,6 +83,24 @@ const projects = [
             "/zemenevents/zemenconatctus.png"
         ],
         link: "https://zemen-events.netlify.app",
+    },
+    {
+        title: "pharmaET",
+        tag: "Healthcare & Delivery",
+        description: "Ethiopia's delivery platform for health essentials and daily needs. Reliable delivery across Addis Ababa. No hassle, no queues. A Flutter mobile app is currently in release testing phase.",
+        problem: "Accessing health essentials and daily necessities in Addis Ababa often involves long queues, limited pharmacy hours, and the inconvenience of physically visiting multiple stores. This is especially challenging for elderly individuals, those with mobility issues, or busy professionals.",
+        solution: "pharmaET provides a seamless digital platform for ordering health essentials and daily needs with reliable door-to-door delivery across Addis Ababa. The platform eliminates queues and hassle, bringing what customers need right to their doorstep.",
+        features: [
+            "Health Essentials Delivery: Pharmaceuticals and wellness products delivered.",
+            "Daily Needs Platform: Comprehensive catalog for everyday necessities.",
+            "Reliable Coverage: Delivery across Addis Ababa with tracking.",
+            "Queue-Free Experience: Skip the lines and wait from home."
+        ],
+        images: [
+            "/pharmaET/pharmaet_homepage.png",
+            "/pharmaET/pharmaEt_footer.png"
+        ],
+        link: "https://pharmaet.com",
     }
 ];
 
