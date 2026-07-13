@@ -1,5 +1,5 @@
 import React from 'react';
-import { GraduationCap } from 'lucide-react';
+import { GraduationCap, Globe } from 'lucide-react';
 
 const Footer = () => {
     return (
@@ -25,21 +25,22 @@ const Footer = () => {
                                 </div>
                                 <p className="text-[var(--text-primary)] font-bold">B.Sc. in Computer Science</p>
                             </div>
-                            <p className="text-[var(--text-secondary)] text-sm">Unity University • GPA 3.55</p>
+                            <p className="text-[var(--text-secondary)] text-sm">Unity University • Graduated with Distinction</p>
                         </div>
 
                         {/* Languages */}
-                        <div className="space-y-3">
-                            <h3 className="tech-text text-[10px] text-[var(--accent)] uppercase tracking-[0.5em] opacity-80">
-                                Languages
-                            </h3>
-                            <div className="flex flex-wrap gap-x-8 gap-y-2 justify-center md:justify-start">
+                        <div className="space-y-2">
+                            <div className="flex items-center gap-3 justify-center md:justify-start">
+                                <Globe size={24} className="text-[var(--accent)]" />
+                                <p className="text-[var(--text-primary)] font-bold">Languages</p>
+                            </div>
+                            <div className="flex flex-wrap gap-x-8 gap-y-2 justify-center md:justify-start pl-11">
                                 <div className="flex items-baseline gap-2">
-                                    <span className="text-lg font-bold text-[var(--text-primary)]">Amharic</span>
+                                    <span className="text-sm font-bold text-[var(--text-primary)]">Amharic</span>
                                     <span className="text-[10px] font-black text-[var(--text-muted)] uppercase tracking-widest">Native</span>
                                 </div>
                                 <div className="flex items-baseline gap-2">
-                                    <span className="text-lg font-bold text-[var(--text-primary)]">English</span>
+                                    <span className="text-sm font-bold text-[var(--text-primary)]">English</span>
                                     <span className="text-[10px] font-black text-[var(--text-muted)] uppercase tracking-widest">Professional</span>
                                 </div>
                             </div>

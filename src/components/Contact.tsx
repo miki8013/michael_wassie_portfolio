@@ -1,6 +1,6 @@
 "use client";
 import { motion } from 'framer-motion';
-import { Mail, Github, MapPin, Linkedin, ArrowRight } from 'lucide-react';
+import { Mail, Github, Linkedin, ArrowRight } from 'lucide-react';
 
 const Contact = () => {
     return (
@@ -48,12 +48,6 @@ const Contact = () => {
 
                     {/* Information Grid */}
                     <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8 pt-10">
-                        <div className="flex items-center gap-3">
-                            <MapPin size={18} className="text-[var(--accent)]" />
-                            <div className="text-left">
-                                <p className="text-sm font-bold text-[var(--text-primary)]">Addis Ababa, Ethiopia</p>
-                            </div>
-                        </div>
                         <div className="flex items-center gap-3">
                             <Mail size={18} className="text-[var(--accent)]" />
                             <div className="text-left">
