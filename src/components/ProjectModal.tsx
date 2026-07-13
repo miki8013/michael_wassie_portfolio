@@ -15,10 +15,11 @@ interface ProjectModalProps {
         vision?: string;
         values?: string[];
         link: string;
-        accent: string;
+        accent?: string;
         images?: string[];
         features?: string[];
         github?: string;
+        telegramBot?: boolean;
     };
     isOpen: boolean;
     onClose: () => void;
@@ -271,7 +272,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                                                 target="_blank"
                                                 className="text-[var(--accent)] font-bold text-sm hover:underline flex items-center gap-2"
                                             >
-                                                View Website <ExternalLink size={14} />
+                                                {project.telegramBot ? 'Open in Telegram' : 'View Website'} <ExternalLink size={14} />
                                             </a>
                                         </div>
                                     </div>

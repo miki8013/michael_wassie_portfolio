@@ -6,51 +6,63 @@
   --font-tech: var(--font-jakarta), sans-serif;
   --font-body: var(--font-jakarta), sans-serif;
 
-  /* Professional Slate/Sky Blue Palette */
+  /* Professional Slate/Emerald Palette */
   --background: #ffffff;
   --foreground: #0f172a; /* Slate 900 */
   --card-bg: rgba(248, 250, 252, 0.8); /* Slate 50 with alpha */
   --border-color: rgba(226, 232, 240, 0.8); /* Slate 200 */
-  --accent: #0ea5e9; /* Sky 500 */
-  --accent-secondary: #0284c7; /* Sky 600 */
+  --accent: #10b981; /* Emerald 500 */
+  --accent-secondary: #059669; /* Emerald 600 */
   
   --text-primary: #0f172a; /* Slate 900 */
   --text-secondary: #475569; /* Slate 600 */
   --text-muted: #94a3b8; /* Slate 400 */
 
   --footer-bg: #f8fafc; /* Slate 50 */
+  
+  --blob-accent: rgba(16, 185, 129, 0.2);
+  --blob-purple: rgba(168, 85, 247, 0.2);
+  --blob-blue: rgba(59, 130, 246, 0.1);
 }
 
-/* Explicit Light Mode (same as root) */
+/* Explicit Light Mode (Green Theme) */
 .light {
-  --background: #ffffff;
+  --background: #f0fdf4;
   --foreground: #0f172a;
-  --card-bg: rgba(248, 250, 252, 0.8);
-  --border-color: rgba(226, 232, 240, 1);
-  --accent: #0ea5e9;
-  --accent-secondary: #0284c7;
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --border-color: rgba(16, 185, 129, 0.3);
+  --accent: #10b981;
+  --accent-secondary: #059669;
 
   --text-primary: #0f172a;
   --text-secondary: #475569;
   --text-muted: #94a3b8;
 
-  --footer-bg: #f8fafc;
+  --footer-bg: #f0fdf4;
+
+  --blob-accent: rgba(16, 185, 129, 0.2);
+  --blob-purple: rgba(236, 72, 153, 0.2);
+  --blob-blue: rgba(59, 130, 246, 0.2);
 }
 
-/* Dark Mode Overrides - Premium Slate/Sky Blue */
+/* Dark Mode Overrides - Warm Charcoal & Emerald */
 .dark {
-  --background: #020617; /* Slate 950 */
-  --foreground: #f8fafc;
-  --card-bg: rgba(15, 23, 42, 0.8); /* Slate 900 */
-  --border-color: rgba(30, 41, 59, 0.5); /* Slate 800 */
-  --accent: #38bdf8; /* Sky 400 */
-  --accent-secondary: #7dd3fc; /* Sky 300 */
+  --background: #121212;
+  --foreground: #ffffff;
+  --card-bg: rgba(20, 20, 22, 0.35);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --accent: #10b981;
+  --accent-secondary: #059669;
 
   --text-primary: #ffffff;
-  --text-secondary: #f8fafc; /* Very light white */
-  --text-muted: #cbd5e1; /* Light grey/white */
+  --text-secondary: #f1f5f9;
+  --text-muted: #94a3b8;
 
-  --footer-bg: #000000;
+  --footer-bg: #0a0a0a;
+
+  --blob-accent: rgba(16, 185, 129, 0.2);
+  --blob-purple: rgba(236, 72, 153, 0.2);
+  --blob-blue: rgba(59, 130, 246, 0.2);
 }
 
 html {

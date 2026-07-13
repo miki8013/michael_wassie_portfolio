@@ -60,7 +60,7 @@ const Skills = () => {
                             whileInView={{ opacity: 1 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             viewport={{ once: true }}
-                            className="border-beam-wrapper rounded-2xl"
+                            className={`border-beam-wrapper rounded-2xl ${index === skillCategories.length - 1 && skillCategories.length % 2 !== 0 ? 'md:col-span-2 md:max-w-2xl md:mx-auto' : ''}`}
                         >
                             {/* Animated Border Beam */}
                             <div className="border-beam-effect" />

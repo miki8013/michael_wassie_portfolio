@@ -85,7 +85,7 @@ const Navbar = () => {
                         target="_blank"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="px-5 py-2 flex items-center justify-center text-sky-600 font-bold rounded-full text-sm bg-white border border-sky-200 transition-all shadow-sm hover:shadow-md"
+                        className="px-5 py-2 flex items-center justify-center text-[var(--accent)] font-bold rounded-full text-sm bg-[var(--background)] border border-[var(--border-color)] transition-all shadow-sm hover:shadow-md"
                     >
                         Resume
                     </motion.a>
@@ -128,7 +128,7 @@ const Navbar = () => {
                                 target="_blank"
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setIsMobileMenuOpen(false)}
-                                className="mt-2 w-full py-4 flex items-center justify-center text-sky-600 font-bold rounded-[1.5rem] bg-white border border-sky-200 transition-all"
+                                className="mt-2 w-full py-4 flex items-center justify-center text-[var(--accent)] font-bold rounded-[1.5rem] bg-[var(--background)] border border-[var(--border-color)] transition-all"
                             >
                                 Resume
                             </motion.a>
