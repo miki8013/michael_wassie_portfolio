@@ -1,16 +1,15 @@
 "use client";
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useRef, useEffect } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import ProjectModal from './ProjectModal';
 
 const featuredProjects = [
   {
     title: "QuickRunner",
-    tag: "E-Commerce & Logistics",
-    description: "A comprehensive multi-shop ordering platform built with the MERN stack. Features seamless WhatsApp integration for real-time order processing.",
-    problem: "In many regions, customers struggle to access local shop inventories digitally. Shopping for specific sizes or items often involves visiting stores blindly, with no reliable home delivery infrastructure in place.",
-    solution: "QuickRunner digitizes local commerce by providing a centralized catalog for multiple shops. By leveraging WhatsApp as the primary communication and ordering channel, it meets customers where they already are, enabling frictionless transactions and reliable door-to-step delivery.",
+    description: "Multi-shop ordering platform where customers browse inventory across local stores and place orders via WhatsApp. Built the full MERN stack: product catalog, cart system, runner assignment, and a shop owner dashboard for managing stock and deliveries.",
+    problem: "Customers couldn't see what local shops had in stock without physically going there. Shop owners had no way to manage orders digitally or coordinate deliveries.",
+    solution: "QuickRunner gives every shop a live digital storefront. Orders flow through WhatsApp because that's where customers already are. A runner management system handles last-mile delivery, and shop owners get a dashboard to update inventory and track orders in real time.",
     features: [
       "Real-time Inventory Access: View sizes and availability instantly.",
       "WhatsApp Integration: Direct communication channel for order confirmation.",
@@ -32,9 +31,8 @@ const featuredProjects = [
   },
   {
     title: "Fresh Fashion",
-    tag: "E-Commerce & Analytics",
-    description: "Modern e-commerce showcase featuring a robust admin dashboard for analytics, inventory management, and customer insights.",
-    problem: "Small fashion brands often struggle to showcase their inventory effectively across web platforms. Maintaining detailed product pages and managing customer orders manually leads to operational bottlenecks.",
+    description: "E-commerce site for a fashion brand with a full admin panel. Built product pages, a category browser, and a WhatsApp checkout flow. Admin side handles inventory updates, order tracking, and sales analytics.",
+    problem: "The brand was taking orders manually over DMs with no organized product catalog or way to track what was selling.",
     solution: "A high-performance e-commerce showcase that integrates directly with WhatsApp, paired with a dedicated admin panel for real-time statistics and inventory management.",
     features: [
       "Responsive Product Showcase: Elegant and detailed product layouts.",
@@ -54,8 +52,7 @@ const featuredProjects = [
   },
   {
     title: "Zemen Events",
-    tag: "Event Management",
-    description: "A web-based event management platform centralizing registration and coordination for local community events across Ethiopia.",
+    description: "Event management platform for organizing and registering community events. Built registration flows, an organizer dashboard, and an admin panel for approving events and managing attendees.",
     problem: "Local communities lack centralized platforms for organizing and registering for community events, leading to coordination challenges and poor user experiences.",
     solution: "Our team developed a web-based management system that centralizes event registration and coordination. By implementing robust admin modules, we improved system reliability and the registration flow for all users.",
     mission: "To connect people through memorable events and provide powerful, intuitive tools for organizers and attendees alike.",
@@ -81,9 +78,8 @@ const featuredProjects = [
   },
   {
     title: "pharmaET",
-    tag: "Healthcare & Delivery",
-    description: "Ethiopia's delivery platform for health essentials and daily needs. Reliable delivery across Addis Ababa. No hassle, no queues.",
-    problem: "Accessing health essentials in Addis Ababa often involves long queues and the inconvenience of physically visiting multiple stores — especially challenging for elderly individuals or busy professionals.",
+    description: "Delivery platform for pharmacies and daily essentials. Flutter mobile app currently in release testing. Built the backend API, product catalog, and order management system.",
+    problem: "Accessing health essentials in Addis Ababa often involves long queues and the inconvenience of physically visiting multiple stores, especially challenging for elderly individuals or busy professionals.",
     solution: "pharmaET provides a seamless digital platform for ordering health essentials with reliable door-to-door delivery. A Flutter mobile app is currently in release testing.",
     features: [
       "Health Essentials Delivery: Pharmaceuticals and wellness products delivered.",
@@ -96,8 +92,7 @@ const featuredProjects = [
   },
   {
     title: "Global Weather Bot",
-    tag: "Node.js & APIs",
-    description: "A secure, production-ready Telegram bot delivering real-time weather and 5-day forecasts for any location worldwide with smart location resolution.",
+    description: "Telegram bot that returns real-time weather and 5-day forecasts for any location. Handles typos via a geocoding search-and-pick flow. Built-in rate limiting (5 req/min per user), input sanitization, and a health endpoint for uptime monitoring.",
     problem: "Users often struggle with location typos when requesting weather, leading to failed queries and poor UX. Traditional bots lack intuitive location selection.",
     solution: "A custom geocoding pipeline resolves partial searches into interactive location-selection grids via inline keyboards. Integrated GPS support for precise reports.",
     features: [
@@ -117,8 +112,7 @@ const featuredProjects = [
 const additionalProjects = [
   {
     title: "Quesa ChatBot",
-    tag: "Telegram Bot & AI",
-    description: "An intelligent conversational AI chatbot for Telegram with context-aware responses and interactive guided support flows.",
+    description: "Telegram support bot with FAQ matching that tolerates typos using Levenshtein distance. Routes complex issues to human agents via a round-robin load balancer. Handles 8 guided flows: OTP help, payment issues, order tracking, cancellations. No commands needed.",
     problem: "Users needed an easy-to-use Telegram bot that could handle complex multi-step processes and provide contextual help without complex command structures.",
     solution: "An AI-powered Telegram chatbot with intelligent FAQ matching, guided support flows, and load-balanced ticket escalation using Levenshtein distance fuzzy matching.",
     features: [
@@ -140,99 +134,306 @@ const additionalProjects = [
   },
 ];
 
+const projectMeta: Record<string, { stack: string; role: string }> = {
+  "QuickRunner":       { stack: "MERN STACK, WHATSAPP API",       role: "FULL STACK DEVELOPMENT" },
+  "Fresh Fashion":     { stack: "NEXT.JS, MONGODB, WHATSAPP",     role: "FULL STACK DEVELOPMENT" },
+  "Zemen Events":      { stack: "REACT, NODE.JS, POSTGRESQL",     role: "FULL STACK DEVELOPMENT" },
+  "pharmaET":          { stack: "FLUTTER, NODE.JS, REST API",     role: "BACKEND + MOBILE DEV"   },
+  "Global Weather Bot":{ stack: "NODE.JS, TELEGRAM API",          role: "BOT DEVELOPMENT"        },
+  "Quesa ChatBot":     { stack: "NODE.JS, TELEGRAM BOT API",      role: "BOT DEVELOPMENT"        },
+};
+
+const ProjectCard = ({ project, index, onClick }: { project: any; index: number; onClick: () => void }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(0.85);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!cardRef.current) return;
+      
+      const rect = cardRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const cardCenter = rect.top + rect.height / 2;
+      const viewportCenter = windowHeight / 2;
+      
+      // Distance from center of viewport
+      const distance = Math.abs(cardCenter - viewportCenter);
+      const maxDistance = windowHeight;
+      
+      // Scale from 0.75 (far) to 1 (centered)
+      const newScale = Math.max(0.75, 1 - (distance / maxDistance) * 0.25);
+      setScale(newScale);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const meta = projectMeta[project.title] ?? { stack: "WEB DEVELOPMENT", role: "FULL STACK" };
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onClick();
+  };
+
+  return (
+    <div 
+      ref={cardRef}
+      className="w-full py-6 md:py-12 transition-transform duration-500 ease-out flex justify-center"
+      style={{ transform: `scale(${scale})`, transformOrigin: 'center center' }}
+    >
+      {/* Mobile layout: stacked card */}
+      <div className="flex flex-col lg:hidden w-full cursor-pointer group px-4" onClick={handleClick}>
+        {/* Image */}
+        <div className="relative w-full aspect-[16/10] overflow-hidden rounded-none shadow-xl mb-5">
+          <div className="absolute top-0 left-0 right-0 h-7 bg-gray-800 flex items-center px-3 gap-2 z-10">
+            <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
+            <span className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
+            <span className="w-2.5 h-2.5 rounded-full bg-green-500" />
+            <div className="flex-1 mx-2 h-4 rounded bg-gray-700 flex items-center px-2">
+              <span className="text-gray-400 text-[8px] font-mono truncate">{project.link}</span>
+            </div>
+          </div>
+          <img
+            src={project.images?.[0] || '/placeholder.jpg'}
+            alt={project.title}
+            className="w-full h-full object-cover pt-7"
+          />
+        </div>
+        {/* Text */}
+        <div className="space-y-3">
+          <h3 className="main-title text-4xl text-[var(--text-primary)]">{project.title}</h3>
+          <div className="space-y-0.5 opacity-60">
+            <p className="tech-text text-xs text-[var(--text-secondary)]">{meta.stack}</p>
+            <p className="tech-text text-xs text-[var(--text-secondary)]">ROLE: {meta.role}</p>
+          </div>
+          <div className="w-10 h-0.5 bg-[var(--accent)]" />
+        </div>
+      </div>
+
+      {/* Desktop layout: side by side */}
+      <div className="hidden lg:flex gap-10 items-start w-full cursor-pointer group" onClick={handleClick}>
+        {/* LEFT — Image (70%) with browser chrome */}
+        <motion.div 
+          className="relative w-[60%] aspect-[16/8] overflow-hidden rounded-none"
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          {/* Browser chrome */}
+          <div className="absolute top-0 left-0 right-0 h-8 bg-gray-800 flex items-center px-3 gap-2 z-10">
+            <span className="w-3 h-3 rounded-full bg-red-500" />
+            <span className="w-3 h-3 rounded-full bg-yellow-400" />
+            <span className="w-3 h-3 rounded-full bg-green-500" />
+            <div className="flex-1 mx-3 h-5 rounded bg-gray-700 flex items-center px-2">
+              <span className="text-gray-400 text-[9px] font-mono truncate">{project.link}</span>
+            </div>
+          </div>
+
+          {/* Screenshot */}
+          <img
+            src={project.images?.[0] || '/placeholder.jpg'}
+            alt={project.title}
+            className="w-[90%] h-full object-cover pt-8 mx-auto block"
+          />
+
+        </motion.div>
+
+        {/* RIGHT — Text content (30%) - NO CARD, direct on background */}
+        <motion.div 
+          className="w-[30%] space-y-6"
+          initial={{ opacity: 0, x: 100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+        >
+          <h3 className="main-title text-5xl text-[var(--text-primary)] leading-tight">
+            {project.title}
+          </h3>
+
+          <div className="space-y-1 opacity-60">
+            <p className="tech-text text-[var(--text-secondary)]">{meta.stack}</p>
+            <p className="tech-text text-[var(--text-secondary)]">ROLE: {meta.role}</p>
+          </div>
+
+          <div className="w-12 h-0.5 bg-[var(--accent)]" />
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<(typeof featuredProjects)[0] | null>(null);
   const [showMore, setShowMore] = useState(false);
   const displayedProjects = showMore ? [...featuredProjects, ...additionalProjects] : featuredProjects;
+  
+  const { scrollYProgress } = useScroll();
+  const featuredX = useTransform(scrollYProgress, [0, 0.3], [-50, 0]);
+  const projectsX = useTransform(scrollYProgress, [0, 0.3], [50, 0]);
+  const starRotation = useTransform(scrollYProgress, [0, 0.5], [0, 1440]);
 
   return (
-    <section id="projects" className="py-20 px-6 bg-[var(--background)]">
-      <div className="container mx-auto max-w-6xl">
+    <>
+      <style jsx global>{`
+        .chromatic-star {
+          filter: url(#chromatic);
+        }
+        @media (prefers-color-scheme: light) {
+          .chromatic-star {
+            opacity: 0.6;
+          }
+        }
+      `}</style>
 
+      <section id="projects" className="py-20 bg-[var(--background)] overflow-hidden">
+      <div className="w-full px-4 md:px-6 lg:px-0">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-14"
+          className="mb-24"
         >
           <span className="accent-line mb-4" />
-          <h2 className="main-title text-5xl md:text-7xl lg:text-8xl text-[var(--text-primary)]">
-            Featured Projects
-          </h2>
+          <div className="flex flex-col items-start relative">
+            <motion.h2 
+              className="main-title text-5xl md:text-7xl lg:text-8xl text-[var(--text-primary)]"
+              style={{ x: featuredX }}
+            >
+              Featured
+            </motion.h2>
+            <motion.div 
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 hidden lg:block"
+              style={{ rotate: starRotation }}
+            >
+              <svg width="200" height="200" viewBox="0 0 24 24" fill="none" className="chromatic-star">
+                <defs>
+                  <filter id="chromatic" x="-100%" y="-100%" width="300%" height="300%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur"/>
+                    
+                    <feOffset in="blur" dx="-4" dy="0" result="red">
+                      <animate attributeName="dx" values="-4;-3;-4" dur="1.5s" repeatCount="indefinite"/>
+                    </feOffset>
+                    <feColorMatrix in="red" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="redChannel"/>
+                    
+                    <feOffset in="blur" dx="4" dy="0" result="blue">
+                      <animate attributeName="dx" values="4;3;4" dur="1.5s" repeatCount="indefinite"/>
+                    </feOffset>
+                    <feColorMatrix in="blue" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="blueChannel"/>
+                    
+                    <feOffset in="blur" dx="0" dy="0" result="green"/>
+                    <feColorMatrix in="green" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="greenChannel"/>
+                    
+                    <feOffset in="blur" dx="-2" dy="-2" result="cyan">
+                      <animate attributeName="dx" values="-2;-1.5;-2" dur="1.5s" repeatCount="indefinite"/>
+                      <animate attributeName="dy" values="-2;-1.5;-2" dur="1.5s" repeatCount="indefinite"/>
+                    </feOffset>
+                    <feColorMatrix in="cyan" type="matrix" values="0 0 0 0 0  0 1 1 0 0  0 0 0 0 0  0 0 0 1 0" result="cyanChannel"/>
+                    
+                    <feOffset in="blur" dx="2" dy="2" result="magenta">
+                      <animate attributeName="dx" values="2;1.5;2" dur="1.5s" repeatCount="indefinite"/>
+                      <animate attributeName="dy" values="2;1.5;2" dur="1.5s" repeatCount="indefinite"/>
+                    </feOffset>
+                    <feColorMatrix in="magenta" type="matrix" values="1 0 1 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="magentaChannel"/>
+                    
+                    <feOffset in="blur" dx="2" dy="-2" result="yellow">
+                      <animate attributeName="dx" values="2;1.5;2" dur="1.5s" repeatCount="indefinite"/>
+                      <animate attributeName="dy" values="-2;-1.5;-2" dur="1.5s" repeatCount="indefinite"/>
+                    </feOffset>
+                    <feColorMatrix in="yellow" type="matrix" values="1 1 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="yellowChannel"/>
+                    
+                    <feOffset in="blur" dx="-2" dy="2" result="purple">
+                      <animate attributeName="dx" values="-2;-1.5;-2" dur="1.5s" repeatCount="indefinite"/>
+                      <animate attributeName="dy" values="2;1.5;2" dur="1.5s" repeatCount="indefinite"/>
+                    </feOffset>
+                    <feColorMatrix in="purple" type="matrix" values="1 0 1 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="purpleChannel"/>
+                    
+                    <feOffset in="blur" dx="0" dy="-3" result="glowTop">
+                      <animate attributeName="dy" values="-3;-2.5;-3" dur="1.5s" repeatCount="indefinite"/>
+                    </feOffset>
+                    <feColorMatrix in="glowTop" type="matrix" values="1 1 1 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0" result="glowTopChannel"/>
+                    
+                    <feOffset in="blur" dx="0" dy="3" result="glowBottom">
+                      <animate attributeName="dy" values="3;2.5;3" dur="1.5s" repeatCount="indefinite"/>
+                    </feOffset>
+                    <feColorMatrix in="glowBottom" type="matrix" values="1 1 1 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0" result="glowBottomChannel"/>
+                    
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="mainGlow"/>
+                    <feOffset in="mainGlow" dx="0" dy="0" result="mainGlowOffset"/>
+                    
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="outerGlow"/>
+                    <feOffset in="outerGlow" dx="0" dy="0" result="outerGlowOffset"/>
+                    
+                    <feBlend in="redChannel" in2="greenChannel" mode="screen" result="rg"/>
+                    <feBlend in="rg" in2="blueChannel" mode="screen" result="rgb"/>
+                    <feBlend in="rgb" in2="cyanChannel" mode="screen" result="rgbc"/>
+                    <feBlend in="rgbc" in2="magentaChannel" mode="screen" result="rgbcm"/>
+                    <feBlend in="rgbcm" in2="yellowChannel" mode="screen" result="allColors"/>
+                    <feBlend in="allColors" in2="purpleChannel" mode="screen" result="allColors2"/>
+                    <feBlend in="allColors2" in2="glowTopChannel" mode="screen" result="withTop"/>
+                    <feBlend in="withTop" in2="glowBottomChannel" mode="screen" result="withBottom"/>
+                    <feBlend in="withBottom" in2="mainGlowOffset" mode="screen" result="withMain"/>
+                    <feBlend in="withMain" in2="outerGlowOffset" mode="screen"/>
+                  </filter>
+                </defs>
+                <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="white"/>
+              </svg>
+            </motion.div>
+            <motion.h2 
+              className="main-title text-5xl md:text-7xl lg:text-8xl text-[var(--text-primary)] self-end"
+              style={{ x: projectsX }}
+            >
+              Projects
+            </motion.h2>
+          </div>
         </motion.div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {displayedProjects.map((project, i) => {
-            const isWide = i === 0 || i === 3 || i === 4;
-            return (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: i * 0.04 }}
-                className={isWide ? 'md:col-span-2' : ''}
-              >
-                <button
-                  className={`project-card group w-full text-left bg-[var(--card-bg)] border border-[var(--border-color)] rounded-2xl p-8 md:p-10 border-l-4 border-l-[var(--accent)]`}
-                  onClick={() => setSelectedProject(project as any)}
-                >
-                  <div className={`flex flex-col ${isWide ? 'md:flex-row md:items-center md:justify-between' : 'justify-between h-full'} gap-6`}>
-                    <div className="flex-1 space-y-3">
-                      <span className="tag-pill">{project.tag}</span>
-                      <h3 className="main-title text-3xl md:text-4xl lg:text-5xl text-[var(--text-primary)]">
-                        {project.title}
-                      </h3>
-                      <p className="text-[var(--text-secondary)] leading-relaxed font-medium text-sm lg:text-base max-w-2xl">
-                        {project.description}
-                      </p>
-                    </div>
-                    <div className={`flex-shrink-0 ${!isWide ? 'self-end' : ''}`}>
-                      <div className="project-arrow w-14 h-14 rounded border border-[var(--border-color)] flex items-center justify-center text-[var(--text-secondary)]">
-                        <ArrowUpRight size={24} />
-                      </div>
-                    </div>
-                  </div>
-                </button>
-              </motion.div>
-            );
-          })}
+        {/* Projects with scroll-based scaling */}
+        <div className="space-y-4">
+          {displayedProjects.map((project, i) => (
+            <ProjectCard
+              key={project.title}
+              project={project}
+              index={i}
+              onClick={() => {
+                console.log('Clicked project:', project.title);
+                setSelectedProject(project);
+              }}
+            />
+          ))}
         </div>
 
-        {/* Footer row */}
-        <div className="mt-14 flex flex-col sm:flex-row items-center justify-between gap-6">
-          {!showMore && (
+        {/* Load more */}
+        {!showMore && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="mt-20 flex justify-center"
+          >
             <button
               onClick={() => setShowMore(true)}
-              className="px-8 py-3 bg-[var(--accent)] text-white font-bold rounded hover:bg-[var(--accent-secondary)] transition-colors duration-200 flex items-center gap-2 text-sm"
+              className="px-8 py-4 bg-[var(--accent)] text-white font-bold rounded-lg hover:bg-[var(--accent-secondary)] transition-all duration-200 flex items-center gap-2 text-sm shadow-lg hover:shadow-xl hover:scale-105"
             >
-              Load More
-              <ArrowUpRight size={16} />
+              Load More Projects
+              <ArrowUpRight size={18} />
             </button>
-          )}
-          <p className="text-[var(--text-muted)] text-sm">
-            More on{" "}
-            <a
-              href="https://github.com/miki8013"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[var(--accent)] font-bold hover:underline"
-            >
-              GitHub
-            </a>
-          </p>
-        </div>
+          </motion.div>
+        )}
       </div>
 
       <ProjectModal
-        project={selectedProject as any}
+        project={selectedProject}
         isOpen={!!selectedProject}
         onClose={() => setSelectedProject(null)}
       />
     </section>
+    </>
   );
 };
 

@@ -17,10 +17,10 @@ const Contact = () => {
                         <h2 className="main-title text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-[var(--text-primary)] leading-[0.85]">
                             Say hi!
                         </h2>
-                        <h2 className="main-title text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-[var(--accent)] leading-[0.85] flex items-center justify-center gap-4">
+                        <h2 className="main-title text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-[var(--accent)] leading-[0.85] flex items-center justify-center gap-2 sm:gap-4">
                             Let's talk
                             <span className="title-arrow">
-                                <ArrowRight className="w-10 h-10 md:w-16 md:h-16 lg:w-20 lg:h-20" strokeWidth={2} />
+                                <ArrowRight className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20" strokeWidth={2} />
                             </span>
                         </h2>
                     </div>

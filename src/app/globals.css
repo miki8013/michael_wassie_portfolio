@@ -59,7 +59,7 @@ body {
 section {
   scroll-margin-top: 100px;
   position: relative;
-  contain: layout style;
+  contain: style;
 }
 
 section[id] {

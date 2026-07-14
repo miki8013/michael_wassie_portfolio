@@ -32,13 +32,13 @@ const Hero = () => {
 
           {/* Name block */}
           <div className="w-full relative flex flex-col gap-0">
-            <div className="self-start -translate-x-4 md:-translate-x-20 lg:-translate-x-28">
-              <h1 className="hero-name-left main-title text-7xl sm:text-8xl md:text-9xl lg:text-[11rem] leading-[0.85] text-[var(--text-primary)]">
+            <div className="self-start -translate-x-2 sm:-translate-x-4 md:-translate-x-20 lg:-translate-x-28">
+              <h1 className="hero-name-left main-title text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] leading-[0.85] text-[var(--text-primary)]">
                 Michael
               </h1>
             </div>
-            <div className="self-end translate-x-4 md:translate-x-20 lg:translate-x-28">
-              <h1 className="hero-name-right main-title text-7xl sm:text-8xl md:text-9xl lg:text-[11rem] leading-[0.85] text-[var(--accent)]">
+            <div className="self-end translate-x-2 sm:translate-x-4 md:translate-x-20 lg:translate-x-28">
+              <h1 className="hero-name-right main-title text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] leading-[0.85] text-[var(--accent)]">
                 Wassie
               </h1>
             </div>
@@ -53,8 +53,8 @@ const Hero = () => {
 
           {/* Bio */}
           <p className="hero-body text-base md:text-lg text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed font-medium">
-            Building scalable products from Addis Ababa — clean architecture,
-            sharp interfaces, real-world impact.
+            I build full-stack web apps, Telegram bots, and payment integrations that solve
+            real problems. Most of my work lives in production.
           </p>
 
           {/* CTAs */}
@@ -76,7 +76,7 @@ const Hero = () => {
               Resume
             </a>
 
-            <div className="flex items-center gap-4 pl-4 border-l border-[var(--border-color)]">
+            <div className="flex items-center gap-4 pl-0 sm:pl-4 border-l-0 sm:border-l border-[var(--border-color)]">
               <a
                 href="https://github.com/miki8013"
                 target="_blank"
@@ -97,10 +97,6 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="hero-cta flex justify-center mt-12 mb-4">
-          <div className="scroll-line" />
-        </div>
       </div>
 
       {/* ── Ticker strip ── */}

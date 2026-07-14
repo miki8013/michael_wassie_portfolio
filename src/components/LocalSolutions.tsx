@@ -6,38 +6,32 @@ const services = [
   {
     title: "Website Development",
     icon: <Globe2 size={20} />,
-    description: "Modern, responsive websites built with the latest technologies. From landing pages to complex web applications.",
-    features: ["Responsive Design", "SEO Optimized", "Fast Performance", "Modern UI/UX"],
+    description: "I build websites that actually work. Fast, clean, and built to grow with your business. Whether you need a landing page or a full web app, I handle it from design to deployment.",
   },
   {
     title: "Mobile Applications",
     icon: <Smartphone size={20} />,
-    description: "Cross-platform mobile applications using Flutter and React Native. Native performance for iOS and Android.",
-    features: ["Flutter Development", "React Native", "Cross-Platform", "App Store Deployment"],
+    description: "Cross-platform apps using Flutter and React Native that feel native on both iOS and Android. I take your idea from wireframe to the app store.",
   },
   {
-    title: "Technology Solutions",
+    title: "Technology Consulting",
     icon: <Wrench size={20} />,
-    description: "Comprehensive technology solutions to streamline your business operations and improve efficiency.",
-    features: ["System Integration", "API Development", "Cloud Solutions", "Technical Consulting"],
+    description: "Not sure what stack to use or how to structure your system? I help businesses make smart technical decisions. APIs, cloud setup, integrations, the works.",
   },
   {
     title: "Chapa Integration",
     icon: <CreditCard size={20} />,
-    description: "Seamless payment gateway integration for Ethiopian businesses. Secure transactions with local currency support.",
-    features: ["Web & Mobile Payments", "Bank Transfer Support", "Real-time Webhooks", "Secure API Integration"],
+    description: "Get your Ethiopian business accepting payments online. I integrate Chapa into your web or mobile app so your customers can pay with local banks and mobile wallets, no friction.",
   },
   {
     title: "M-Pesa Integration",
     icon: <Smartphone size={20} />,
-    description: "Mobile money integration for seamless transactions across East Africa. Fast, reliable, and user-friendly.",
-    features: ["STK Push Payments", "C2B & B2C Transactions", "Balance Inquiry", "Transaction History"],
+    description: "Reach customers across East Africa with M-Pesa. I wire up STK push, business pay-outs, and transaction callbacks so money moves smoothly in your product.",
   },
   {
     title: "Telebirr Integration",
     icon: <Globe size={20} />,
-    description: "Ethio Telecom's mobile payment solution for digital transactions. Easy integration for businesses of all sizes.",
-    features: ["QR Code Payments", "Bill Payments", "Merchant Services", "Instant Notifications"],
+    description: "Add Ethio Telecom's Telebirr as a payment option in your app or website. I handle the API setup, QR flows, and webhook handling end to end.",
   },
 ];
 
@@ -51,13 +45,13 @@ const Services = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-14 text-center"
+          className="mb-14"
         >
-          <span className="accent-line mb-4 mx-auto" />
+          <span className="accent-line mb-4" />
           <h2 className="main-title text-5xl md:text-7xl lg:text-8xl text-[var(--text-primary)]">
             Services
           </h2>
-          <p className="text-[var(--text-secondary)] text-base font-medium max-w-xl mx-auto mt-4">
+          <p className="text-[var(--text-secondary)] text-base font-medium max-w-xl mt-4">
             What I can build for your business
           </p>
         </motion.div>
@@ -80,20 +74,9 @@ const Services = () => {
                 {service.title}
               </h3>
 
-              <p className="text-[var(--text-secondary)] mb-5 text-sm leading-relaxed font-medium">
+              <p className="text-[var(--text-secondary)] text-sm leading-relaxed font-medium">
                 {service.description}
               </p>
-
-              <div className="flex flex-wrap gap-2">
-                {service.features.map((feature) => (
-                  <span
-                    key={feature}
-                    className="text-xs font-semibold text-[var(--text-secondary)] bg-[var(--accent)]/10 border border-[var(--accent)]/25 rounded px-3 py-1"
-                  >
-                    {feature}
-                  </span>
-                ))}
-              </div>
             </motion.div>
           ))}
         </div>
