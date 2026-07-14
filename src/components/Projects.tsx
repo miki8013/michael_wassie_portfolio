@@ -148,7 +148,7 @@ const additionalProjects = [
             "/QuesaChatBot/quesatra.png",
             "/QuesaChatBot/queststart.png"
         ],
-        link: "https://t.me/QuesaChatBot",
+        link: "https://t.me/QuesanBot",
         telegramBot: true,
     }
 ];
