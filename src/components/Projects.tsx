@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { ExternalLink, ArrowUpRight } from 'lucide-react';
 import ProjectModal from './ProjectModal';
 
-const projects = [
+const featuredProjects = [
     {
         title: "QuickRunner",
         tag: "E commerce & Logistics",
@@ -126,8 +126,39 @@ const projects = [
     }
 ];
 
+const additionalProjects = [
+    {
+        title: "Quesa ChatBot",
+        tag: "Telegram Bot & AI",
+        description: "An intelligent conversational AI chatbot for Telegram with context-aware responses and interactive guided flows.",
+        problem: "Users needed an easy-to-use Telegram bot that could handle complex multi-step processes and provide contextual help without complex command structures.",
+        solution: "Built an AI-powered Telegram chatbot with intelligent FAQ matching, guided support flows, and load-balanced ticket escalation. The bot uses fuzzy matching algorithms to handle typos and natural language variations while automatically routing complex issues to support agents.",
+        features: [
+            "Intelligent FAQ Matching: Typo-tolerant text normalization with Levenshtein distance algorithm for fuzzy word matching.",
+            "8 Guided Support Flows: OTP verification, login recovery, payment guidance, order tracking, cancellation, delivery setup, and receipt upload.",
+            "Smart Ticket Escalation: One-click escalation with guided form collection (name → phone → issue description) and automatic ticket generation.",
+            "Load-Balanced Distribution: Round-robin routing across unlimited support agents configured via environment variables.",
+            "Session Management: Per-user session tracking with conversation history and context awareness.",
+            "Interactive Guided Flows: Step-by-step workflows using inline buttons for frictionless navigation.",
+            "Responsive Design: Works seamlessly across mobile and desktop Telegram clients."
+        ],
+        images: [
+            "/QuesaChatBot/quesan.png",
+            "/QuesaChatBot/quesaore.png",
+            "/QuesaChatBot/quesatra.png",
+            "/QuesaChatBot/queststart.png"
+        ],
+        link: "https://t.me/QuesaChatBot",
+        telegramBot: true,
+    }
+];
+
+const projects = featuredProjects;
+
 const Projects = () => {
     const [selectedProject, setSelectedProject] = useState<any>(null);
+    const [showMore, setShowMore] = useState(false);
+    const displayedProjects = showMore ? [...projects, ...additionalProjects] : projects;
 
     return (
         <section id="projects" className="py-10 px-6 bg-[var(--background)]">
@@ -148,7 +179,7 @@ const Projects = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    {projects.map((project, i) => (
+                    {displayedProjects.map((project, i) => (
                         <motion.div
                             key={project.title}
                             initial={{ opacity: 0, y: 30 }}
@@ -200,8 +231,23 @@ const Projects = () => {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    className="mt-20 text-center"
+                    className="mt-20 text-center space-y-8"
                 >
+                    {!showMore && (
+                        <motion.button
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            onClick={() => setShowMore(true)}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="inline-flex items-center gap-3 px-8 py-4 bg-[var(--accent)] text-white font-bold rounded-full hover:shadow-lg hover:shadow-[var(--accent)]/50 transition-all duration-300 border border-[var(--accent)]/50"
+                        >
+                            Load More Projects
+                            <ArrowUpRight size={18} />
+                        </motion.button>
+                    )}
+                    
                     <p className="text-[var(--text-secondary)]">
                         Interested in collaboration? Visit my{" "}
                         <a
