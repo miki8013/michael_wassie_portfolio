@@ -29,7 +29,7 @@ const Contact = () => {
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
                         <motion.a
                             href="mailto:wassiemiki@gmail.com"
-                            className="w-full sm:w-auto px-8 py-4 bg-[var(--accent)] hover:bg-[var(--accent)]/90 text-white font-bold rounded-full transition-all flex items-center justify-center gap-3 shadow-lg shadow-[var(--accent)]/20"
+                            className="w-full sm:w-auto px-8 py-4 bg-[var(--accent)] hover:bg-[var(--accent-secondary)] text-white font-bold rounded transition-colors duration-200 flex items-center justify-center gap-3 shadow-lg shadow-[var(--accent)]/20"
                         >
                             <Mail size={18} />
                             Send an Email
@@ -39,7 +39,7 @@ const Contact = () => {
                             href="https://www.linkedin.com/in/michael-wassie-1a779734b"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-full sm:w-auto px-8 py-4 glass-effect text-[var(--text-primary)] font-bold rounded-full transition-all flex items-center justify-center gap-3"
+                            className="w-full sm:w-auto px-8 py-4 bg-[var(--card-bg)] text-[var(--text-primary)] font-bold rounded border border-[var(--border-color)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors duration-200 flex items-center justify-center gap-3"
                         >
                             <Linkedin size={18} />
                             LinkedIn

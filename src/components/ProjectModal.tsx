@@ -68,7 +68,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={onClose}
-                        className="fixed inset-0 bg-black/80 backdrop-blur-md"
+                        className="fixed inset-0 bg-black/85"
                     />
 
                     {/* Lightbox Overlay */}
@@ -139,7 +139,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                         className="relative w-full h-full md:h-auto md:max-h-[95vh] md:max-w-4xl bg-[var(--background)] border-0 md:border md:border-[var(--border-color)] rounded-none md:rounded-3xl overflow-hidden shadow-2xl z-10 flex flex-col"
                     >
                         {/* Header - Sticky */}
-                        <div className="sticky top-0 bg-[var(--background)]/90 backdrop-blur-md z-30 flex items-center justify-between p-6 border-b border-[var(--border-color)]">
+                        <div className="sticky top-0 bg-[var(--background)] z-30 flex items-center justify-between p-6 border-b border-[var(--border-color)]">
                             <div>
                                 <h3 className="text-2xl font-bold text-[var(--text-primary)]">{project.title}</h3>
                             </div>
