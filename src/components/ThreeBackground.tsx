@@ -1,9 +1,10 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
 const ThreeBackground: React.FC<{ className?: string }> = ({ className }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -83,13 +84,33 @@ const ThreeBackground: React.FC<{ className?: string }> = ({ className }) => {
 
     scene.add(new THREE.LineSegments(geo, mat));
 
-    // ── Mouse in world space (unproject NDC at z=0) ────────────────────────
-    const mouse = new THREE.Vector2(99999, 99999);
-    const onMouseMove = (e: MouseEvent) => {
-      const nx =  (e.clientX / W) * 2 - 1;
-      const ny = -(e.clientY / H) * 2 + 1;
-      // world coords at z=0 plane from perspective camera
+    // ── Mouse/touch in world space (unproject NDC at z=0) ──────────────────
+    // Initialize at center to show initial ripple on desktop
+    const mouse = new THREE.Vector2(0, 0);
+    let hasInteracted = false;
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    const updateMousePosition = (clientX: number, clientY: number) => {
+      const nx =  (clientX / W) * 2 - 1;
+      const ny = -(clientY / H) * 2 + 1;
       mouse.set(nx * getHalfW(), ny * HALF_H);
+      hasInteracted = true;
+    };
+
+    const onMouseMove = (e: MouseEvent) => {
+      updateMousePosition(e.clientX, e.clientY);
+    };
+
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        updateMousePosition(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        updateMousePosition(e.touches[0].clientX, e.touches[0].clientY);
+      }
     };
 
     // ── Resize ─────────────────────────────────────────────────────────────
@@ -103,15 +124,24 @@ const ThreeBackground: React.FC<{ className?: string }> = ({ className }) => {
     };
 
     window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
     window.addEventListener("resize",    onResize);
 
     // ── Animate ────────────────────────────────────────────────────────────
     let raf: number;
     let t = 0;
+    let frameCount = 0;
 
     const animate = () => {
       raf = requestAnimationFrame(animate);
       t  += 0.016;
+      frameCount++;
+
+      // Mark as ready after first frame to prevent flashing
+      if (frameCount === 1) {
+        setIsReady(true);
+      }
 
       const arr = geo.attributes.position.array as Float32Array;
 
@@ -124,13 +154,16 @@ const ThreeBackground: React.FC<{ className?: string }> = ({ className }) => {
         const shape   = Math.sin(x * 0.55) * Math.cos(y * 0.45);
         const ambient = shape * (0.5 + 0.5 * Math.sin(t * 0.8)) * 1.2;
 
-        // Mouse ripple — gaussian bell on Z, cosine rings spreading out
+        // Mouse/touch ripple — gaussian bell on Z, cosine rings spreading out
+        // On mobile, only show ripple after user interaction
+        // On desktop, show initial ripple at center
         const dx   = x - mouse.x;
         const dy   = y - mouse.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         const R    = 3.0; // world-unit radius
+        const shouldShowRipple = isMobile ? hasInteracted : true;
         const ripple =
-          dist < R * 2
+          shouldShowRipple && dist < R * 2
             ? 2.2 *
               Math.exp((-dist * dist) / (R * R * 0.5)) *
               Math.cos(dist * 2.8 - t * 6)
@@ -150,6 +183,8 @@ const ThreeBackground: React.FC<{ className?: string }> = ({ className }) => {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
       window.removeEventListener("resize",    onResize);
       renderer.dispose();
       geo.dispose();
@@ -169,6 +204,8 @@ const ThreeBackground: React.FC<{ className?: string }> = ({ className }) => {
         zIndex:        0,
         pointerEvents: "none",
         display:       "block",
+        opacity:       isReady ? 1 : 0,
+        transition:    "opacity 0.3s ease",
       }}
     />
   );
