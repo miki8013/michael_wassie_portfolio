@@ -33,6 +33,15 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
         setActiveImageIndex(0);
     }, [project?.title]);
 
+    // Auto-advance slideshow every 3 seconds
+    useEffect(() => {
+        if (!project?.images || project.images.length <= 1) return;
+        const timer = setInterval(() => {
+            setActiveImageIndex(prev => (prev + 1) % project.images!.length);
+        }, 3000);
+        return () => clearInterval(timer);
+    }, [project?.title, project?.images?.length]);
+
     // Prevent scroll when modal is open
     useEffect(() => {
         if (isOpen) {
@@ -103,25 +112,35 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                             </AnimatePresence>
 
                             {/* Navigation arrows */}
-                            <div className="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className="absolute inset-0 flex items-center justify-between p-4">
                                 <button
                                     onClick={handlePrevImage}
-                                    className="p-3 bg-white/20 hover:bg-white/40 rounded-full text-white backdrop-blur-sm transition-all"
+                                    className="p-2.5 bg-black border-2 border-black text-white rounded-full hover:bg-gray-900 transition-all flex items-center justify-center"
                                 >
-                                    <ChevronLeft size={24} />
+                                    <ChevronLeft size={22} strokeWidth={2.5} />
                                 </button>
                                 <button
                                     onClick={handleNextImage}
-                                    className="p-3 bg-white/20 hover:bg-white/40 rounded-full text-white backdrop-blur-sm transition-all"
+                                    className="p-2.5 bg-black border-2 border-black text-white rounded-full hover:bg-gray-900 transition-all flex items-center justify-center"
                                 >
-                                    <ChevronRight size={24} />
+                                    <ChevronRight size={22} strokeWidth={2.5} />
                                 </button>
                             </div>
 
                             {/* Counter */}
                             {project.images && project.images.length > 0 && (
-                                <div className="absolute bottom-4 right-4 px-3 py-1 bg-black/50 backdrop-blur-md rounded-full text-white/70 text-xs font-bold border border-white/20">
-                                    {activeImageIndex + 1} / {project.images.length}
+                                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                                    {project.images.map((_, i) => (
+                                        <button
+                                            key={i}
+                                            onClick={() => setActiveImageIndex(i)}
+                                            className={`rounded-full transition-all duration-300 ${
+                                                i === activeImageIndex
+                                                    ? 'w-5 h-2 bg-white'
+                                                    : 'w-2 h-2 bg-white/40 hover:bg-white/70'
+                                            }`}
+                                        />
+                                    ))}
                                 </div>
                             )}
                         </div>
@@ -148,20 +167,30 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 
                             <button
                                 onClick={handlePrevImage}
-                                className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-white/20 hover:bg-white/40 rounded-full text-white transition-all"
+                                className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-black border-2 border-black text-white rounded-full hover:bg-gray-900 transition-all flex items-center justify-center"
                             >
-                                <ChevronLeft size={18} />
+                                <ChevronLeft size={16} strokeWidth={2.5} />
                             </button>
                             <button
                                 onClick={handleNextImage}
-                                className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-white/20 hover:bg-white/40 rounded-full text-white transition-all"
+                                className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-black border-2 border-black text-white rounded-full hover:bg-gray-900 transition-all flex items-center justify-center"
                             >
-                                <ChevronRight size={18} />
+                                <ChevronRight size={16} strokeWidth={2.5} />
                             </button>
 
                             {project.images && project.images.length > 0 && (
-                                <div className="absolute bottom-3 right-3 px-2.5 py-1 bg-black/50 backdrop-blur-md rounded-full text-white/70 text-xs font-bold border border-white/20">
-                                    {activeImageIndex + 1} / {project.images.length}
+                                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                                    {project.images.map((_, i) => (
+                                        <button
+                                            key={i}
+                                            onClick={() => setActiveImageIndex(i)}
+                                            className={`rounded-full transition-all duration-300 ${
+                                                i === activeImageIndex
+                                                    ? 'w-4 h-1.5 bg-white'
+                                                    : 'w-1.5 h-1.5 bg-white/40'
+                                            }`}
+                                        />
+                                    ))}
                                 </div>
                             )}
                         </div>
