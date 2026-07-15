@@ -16,8 +16,8 @@ export default function ChromaticAberration() {
   const activeRef = useRef(false);
 
   useEffect(() => {
-    rEl.current = document.getElementById("ca-r") as SVGFEOffsetElement;
-    bEl.current = document.getElementById("ca-b") as SVGFEOffsetElement;
+    rEl.current = document.getElementById("ca-r") as unknown as SVGFEOffsetElement;
+    bEl.current = document.getElementById("ca-b") as unknown as SVGFEOffsetElement;
 
     function tick() {
       rafRef.current = requestAnimationFrame(tick);
