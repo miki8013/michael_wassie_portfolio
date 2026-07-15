@@ -302,7 +302,7 @@ const Projects = () => {
             >
               <svg width="220" height="220" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                  <filter id="chromatic" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+                  <filter id="chromatic" x="-30%" y="-30%" width="160%" height="160%" colorInterpolationFilters="sRGB">
                     
                     {/* Sharp red channel — offset left */}
                     <feOffset in="SourceGraphic" dx="-1.2" dy="0" result="rShift"/>

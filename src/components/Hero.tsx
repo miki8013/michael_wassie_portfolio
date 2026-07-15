@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import { ArrowRight, Github, Mail } from 'lucide-react';
+import ThreeBackground from './ThreeBackground';
 
 const TICKER_ITEMS = [
   "React", "Next.js", "Node.js", "TypeScript", "MongoDB",
@@ -13,6 +14,9 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-[70vh] flex flex-col pt-36 md:pt-40 pb-0 overflow-hidden">
+
+      {/* ── Three.js animated background ── */}
+      <ThreeBackground />
 
       {/* ── Ghost echo titles ── */}
       <span
@@ -53,8 +57,7 @@ const Hero = () => {
 
           {/* Bio */}
           <p className="hero-body text-base md:text-lg text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed font-medium">
-            I build full-stack web apps, Telegram bots, and payment integrations that solve
-            real problems. Most of my work lives in production.
+            Computer Science graduate who enjoys building software. I've worked on e-commerce platforms, a Flutter pharmacy app, event systems, and WhatsApp integrated ordering solutions — with many more on the way.
           </p>
 
           {/* CTAs */}

@@ -77,10 +77,10 @@ const Footer = () => {
 
                 {/* Bottom bar */}
                 <div className="mt-8 sm:mt-12 pt-5 sm:pt-8 border-t border-[var(--border-color)] flex flex-col items-center gap-2 text-center">
-                    <p className="text-[var(--text-muted)] text-[10px] sm:text-xs leading-relaxed">
+                    <p className="text-[var(--text-secondary)] text-[10px] sm:text-xs leading-relaxed">
                         Built with Next.js, TypeScript, Tailwind CSS, Framer Motion
                     </p>
-                    <p className="text-[var(--text-muted)]/60 text-[10px] sm:text-xs">
+                    <p className="text-[var(--text-muted)] text-[10px] sm:text-xs">
                         © {new Date().getFullYear()} Michael Wassie
                     </p>
                 </div>

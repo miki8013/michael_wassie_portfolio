@@ -5,6 +5,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 import { Bungee, Plus_Jakarta_Sans, Unbounded } from "next/font/google";
 
 import { Analytics } from "@vercel/analytics/next";
+import ChromaticAberration from "@/components/ChromaticAberration";
 
 const bungee = Bungee({
   weight: "400",
@@ -160,6 +161,7 @@ export default function RootLayout({
       </head>
       <body>
         <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
+          <ChromaticAberration />
           <ThemeToggle />
           {children}
           <Analytics />
