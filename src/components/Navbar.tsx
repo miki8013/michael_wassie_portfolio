@@ -39,7 +39,7 @@ const Navbar = () => {
         <nav className="fixed top-4 w-full z-50 px-4 md:px-6">
             <div className="container mx-auto max-w-5xl">
                 {/* Bar */}
-                <div className={`flex justify-between items-center transition-all duration-300 rounded-xl border border-white/10 dark:border-white/10 light:border-black/8 ${
+                <div className={`relative flex justify-between items-center transition-all duration-300 rounded-xl z-[50] ${
                     scrolled ? 'px-6 md:px-8 py-3' : 'px-6 md:px-8 py-4'
                 }`}
                 style={{

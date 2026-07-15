@@ -278,17 +278,6 @@ const Projects = () => {
 
   return (
     <>
-      <style jsx global>{`
-        .chromatic-star {
-          filter: url(#chromatic);
-        }
-        @media (prefers-color-scheme: light) {
-          .chromatic-star {
-            opacity: 0.6;
-          }
-        }
-      `}</style>
-
       <section id="projects" className="py-20 overflow-hidden">
       <div className="w-full px-4 md:px-6 lg:px-0">
         {/* Heading */}
