@@ -39,9 +39,16 @@ const Navbar = () => {
         <nav className="fixed top-4 w-full z-50 px-4 md:px-6">
             <div className="container mx-auto max-w-5xl">
                 {/* Bar */}
-                <div className={`flex justify-between items-center transition-all duration-300 bg-[var(--background)] border border-[var(--border-color)] rounded-lg ${
-                    scrolled ? 'shadow-xl px-6 md:px-8 py-3' : 'shadow-sm px-6 md:px-8 py-4'
-                }`}>
+                <div className={`flex justify-between items-center transition-all duration-300 rounded-xl border border-white/10 dark:border-white/10 light:border-black/8 ${
+                    scrolled ? 'px-6 md:px-8 py-3' : 'px-6 md:px-8 py-4'
+                }`}
+                style={{
+                    background: 'color-mix(in srgb, var(--background) 45%, transparent)',
+                    backdropFilter: 'blur(24px) saturate(140%) brightness(0.95)',
+                    WebkitBackdropFilter: 'blur(24px) saturate(140%) brightness(0.95)',
+                    boxShadow: '0 4px 32px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.08)',
+                    border: '1px solid color-mix(in srgb, var(--foreground) 10%, transparent)',
+                }}>
                     <motion.a
                         href="#"
                         onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
@@ -72,7 +79,12 @@ const Navbar = () => {
                             target="_blank"
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.97 }}
-                            className="px-5 py-2 text-[var(--accent)] font-bold rounded text-sm bg-[var(--background)] border border-[var(--border-color)] hover:border-[var(--accent)] transition-colors"
+                            className="px-5 py-2 text-[var(--accent)] font-bold rounded text-sm border border-[var(--accent)]/40 hover:border-[var(--accent)] transition-colors"
+                            style={{
+                                background: 'rgba(16, 185, 129, 0.08)',
+                                backdropFilter: 'blur(12px)',
+                                WebkitBackdropFilter: 'blur(12px)',
+                            }}
                         >
                             Resume
                         </motion.a>
@@ -97,7 +109,13 @@ const Navbar = () => {
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
-                            className="absolute top-0 left-0 w-full bg-[var(--background)] border border-[var(--border-color)] shadow-2xl p-6 pt-24 md:hidden flex flex-col gap-2 overflow-hidden rounded-lg z-[40]"
+                            className="absolute top-0 left-0 w-full shadow-2xl p-6 pt-24 md:hidden flex flex-col gap-2 overflow-hidden rounded-xl z-[40]"
+                            style={{
+                                background: 'color-mix(in srgb, var(--background) 55%, transparent)',
+                                backdropFilter: 'blur(32px) saturate(150%) brightness(0.97)',
+                                WebkitBackdropFilter: 'blur(32px) saturate(150%) brightness(0.97)',
+                                border: '1px solid color-mix(in srgb, var(--foreground) 10%, transparent)',
+                            }}
                         >
                             {navLinks.map((link) => (
                                 <a
@@ -114,7 +132,10 @@ const Navbar = () => {
                                 target="_blank"
                                 whileTap={{ scale: 0.97 }}
                                 onClick={() => setIsMobileMenuOpen(false)}
-                                className="mt-2 w-full py-4 flex items-center justify-center text-[var(--accent)] font-bold rounded bg-[var(--background)] border border-[var(--border-color)] transition-colors"
+                                className="mt-2 w-full py-4 flex items-center justify-center text-[var(--accent)] font-bold rounded border border-[var(--accent)]/40 hover:border-[var(--accent)] transition-colors"
+                                style={{
+                                    background: 'rgba(16, 185, 129, 0.08)',
+                                }}
                             >
                                 Resume
                             </motion.a>

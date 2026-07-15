@@ -289,7 +289,7 @@ const Projects = () => {
         }
       `}</style>
 
-      <section id="projects" className="py-20 bg-[var(--background)] overflow-hidden">
+      <section id="projects" className="py-20 overflow-hidden">
       <div className="w-full px-4 md:px-6 lg:px-0">
         {/* Heading */}
         <motion.div
@@ -311,77 +311,54 @@ const Projects = () => {
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 hidden lg:block"
               style={{ rotate: starRotation }}
             >
-              <svg width="200" height="200" viewBox="0 0 24 24" fill="none" className="chromatic-star">
+              <svg width="220" height="220" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                  <filter id="chromatic" x="-100%" y="-100%" width="300%" height="300%">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur"/>
+                  <filter id="chromatic" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
                     
-                    <feOffset in="blur" dx="-4" dy="0" result="red">
-                      <animate attributeName="dx" values="-4;-3;-4" dur="1.5s" repeatCount="indefinite"/>
-                    </feOffset>
-                    <feColorMatrix in="red" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="redChannel"/>
-                    
-                    <feOffset in="blur" dx="4" dy="0" result="blue">
-                      <animate attributeName="dx" values="4;3;4" dur="1.5s" repeatCount="indefinite"/>
-                    </feOffset>
-                    <feColorMatrix in="blue" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="blueChannel"/>
-                    
-                    <feOffset in="blur" dx="0" dy="0" result="green"/>
-                    <feColorMatrix in="green" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="greenChannel"/>
-                    
-                    <feOffset in="blur" dx="-2" dy="-2" result="cyan">
-                      <animate attributeName="dx" values="-2;-1.5;-2" dur="1.5s" repeatCount="indefinite"/>
-                      <animate attributeName="dy" values="-2;-1.5;-2" dur="1.5s" repeatCount="indefinite"/>
-                    </feOffset>
-                    <feColorMatrix in="cyan" type="matrix" values="0 0 0 0 0  0 1 1 0 0  0 0 0 0 0  0 0 0 1 0" result="cyanChannel"/>
-                    
-                    <feOffset in="blur" dx="2" dy="2" result="magenta">
-                      <animate attributeName="dx" values="2;1.5;2" dur="1.5s" repeatCount="indefinite"/>
-                      <animate attributeName="dy" values="2;1.5;2" dur="1.5s" repeatCount="indefinite"/>
-                    </feOffset>
-                    <feColorMatrix in="magenta" type="matrix" values="1 0 1 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="magentaChannel"/>
-                    
-                    <feOffset in="blur" dx="2" dy="-2" result="yellow">
-                      <animate attributeName="dx" values="2;1.5;2" dur="1.5s" repeatCount="indefinite"/>
-                      <animate attributeName="dy" values="-2;-1.5;-2" dur="1.5s" repeatCount="indefinite"/>
-                    </feOffset>
-                    <feColorMatrix in="yellow" type="matrix" values="1 1 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="yellowChannel"/>
-                    
-                    <feOffset in="blur" dx="-2" dy="2" result="purple">
-                      <animate attributeName="dx" values="-2;-1.5;-2" dur="1.5s" repeatCount="indefinite"/>
-                      <animate attributeName="dy" values="2;1.5;2" dur="1.5s" repeatCount="indefinite"/>
-                    </feOffset>
-                    <feColorMatrix in="purple" type="matrix" values="1 0 1 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="purpleChannel"/>
-                    
-                    <feOffset in="blur" dx="0" dy="-3" result="glowTop">
-                      <animate attributeName="dy" values="-3;-2.5;-3" dur="1.5s" repeatCount="indefinite"/>
-                    </feOffset>
-                    <feColorMatrix in="glowTop" type="matrix" values="1 1 1 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0" result="glowTopChannel"/>
-                    
-                    <feOffset in="blur" dx="0" dy="3" result="glowBottom">
-                      <animate attributeName="dy" values="3;2.5;3" dur="1.5s" repeatCount="indefinite"/>
-                    </feOffset>
-                    <feColorMatrix in="glowBottom" type="matrix" values="1 1 1 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0" result="glowBottomChannel"/>
-                    
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="mainGlow"/>
-                    <feOffset in="mainGlow" dx="0" dy="0" result="mainGlowOffset"/>
-                    
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="outerGlow"/>
-                    <feOffset in="outerGlow" dx="0" dy="0" result="outerGlowOffset"/>
-                    
-                    <feBlend in="redChannel" in2="greenChannel" mode="screen" result="rg"/>
-                    <feBlend in="rg" in2="blueChannel" mode="screen" result="rgb"/>
-                    <feBlend in="rgb" in2="cyanChannel" mode="screen" result="rgbc"/>
-                    <feBlend in="rgbc" in2="magentaChannel" mode="screen" result="rgbcm"/>
-                    <feBlend in="rgbcm" in2="yellowChannel" mode="screen" result="allColors"/>
-                    <feBlend in="allColors" in2="purpleChannel" mode="screen" result="allColors2"/>
-                    <feBlend in="allColors2" in2="glowTopChannel" mode="screen" result="withTop"/>
-                    <feBlend in="withTop" in2="glowBottomChannel" mode="screen" result="withBottom"/>
-                    <feBlend in="withBottom" in2="mainGlowOffset" mode="screen" result="withMain"/>
-                    <feBlend in="withMain" in2="outerGlowOffset" mode="screen"/>
+                    {/* Sharp red channel — offset left */}
+                    <feOffset in="SourceGraphic" dx="-1.2" dy="0" result="rShift"/>
+                    <feColorMatrix in="rShift" type="matrix"
+                      values="1 0 0 0 0
+                              0 0 0 0 0
+                              0 0 0 0 0
+                              0 0 0 1 0" result="rChannel"/>
+
+                    {/* Sharp green channel — centered */}
+                    <feColorMatrix in="SourceGraphic" type="matrix"
+                      values="0 0 0 0 0
+                              0 1 0 0 0
+                              0 0 0 0 0
+                              0 0 0 1 0" result="gChannel"/>
+
+                    {/* Sharp blue channel — offset right */}
+                    <feOffset in="SourceGraphic" dx="1.2" dy="0" result="bShift"/>
+                    <feColorMatrix in="bShift" type="matrix"
+                      values="0 0 0 0 0
+                              0 0 0 0 0
+                              0 0 1 0 0
+                              0 0 0 1 0" result="bChannel"/>
+
+                    {/* Blend all three channels */}
+                    <feBlend in="rChannel" in2="gChannel" mode="screen" result="rg"/>
+                    <feBlend in="rg" in2="bChannel" mode="screen" result="rgb"/>
+
+                    {/* Soft outer glow only — very mild blur on top */}
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="0.6" result="softGlow"/>
+                    <feColorMatrix in="softGlow" type="matrix"
+                      values="1 0 0 0 0
+                              0 1 0 0 0
+                              0 0 1 0 0
+                              0 0 0 0.4 0" result="glowFaded"/>
+
+                    <feBlend in="rgb" in2="glowFaded" mode="screen"/>
                   </filter>
                 </defs>
-                <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="white"/>
+                {/* 4-point star at full resolution */}
+                <path
+                  d="M50 5 L55.5 44.5 L95 50 L55.5 55.5 L50 95 L44.5 55.5 L5 50 L44.5 44.5 Z"
+                  fill="white"
+                  filter="url(#chromatic)"
+                />
               </svg>
             </motion.div>
             <motion.h2 

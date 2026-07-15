@@ -108,10 +108,10 @@ const Hero = () => {
           {doubled.map((item, i) => (
             <span
               key={i}
-              className="tech-text text-[var(--text-muted)] px-8 whitespace-nowrap text-xs"
+              className="tech-text text-white px-8 whitespace-nowrap text-xs"
             >
               {item}
-              <span className="ml-8 text-[var(--accent)]">✦</span>
+              <span className="ml-8 text-white/50">✦</span>
             </span>
           ))}
         </div>

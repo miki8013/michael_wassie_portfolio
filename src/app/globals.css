@@ -32,28 +32,98 @@
 }
 
 .dark {
-  --background: #0c0c0c;
+  --background: #080c10;
   --foreground: #ffffff;
-  --card-bg: #141414;
-  --border-color: rgba(255, 255, 255, 0.07);
+  --card-bg: #0f1419;
+  --border-color: rgba(255, 255, 255, 0.08);
   --accent: #10b981;
   --accent-secondary: #059669;
   --text-primary: #f8fafc;
   --text-secondary: #cbd5e1;
   --text-muted: #64748b;
-  --footer-bg: #080808;
+  --footer-bg: #060a0d;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+/* ─── Orb glow animations ─── */
+@keyframes orb-1 {
+  0%   { background-position: 75% 70%, 20% 30%; }
+  33%  { background-position: 85% 50%, 30% 50%; }
+  66%  { background-position: 60% 85%, 10% 15%; }
+  100% { background-position: 75% 70%, 20% 30%; }
+}
+@keyframes orb-2 {
+  0%   { background-position: 25% 20%, 80% 85%; }
+  33%  { background-position: 10% 40%, 90% 65%; }
+  66%  { background-position: 40% 10%, 70% 90%; }
+  100% { background-position: 25% 20%, 80% 85%; }
+}
+
+/* Dark mode — glowing orbs on near-black */
 body {
   color: var(--text-primary);
-  background: var(--background);
   font-family: var(--font-body);
   overflow-x: hidden;
-  transition: color 0.25s ease, background-color 0.25s ease;
+  transition: color 0.25s ease;
+  background-color: #080c10;
+  position: relative;
+}
+
+/* Orb layer — fixed, no transform movement, only background-position shifts */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Primary orb — emerald glow */
+body::before {
+  background:
+    radial-gradient(ellipse 60% 50% at 75% 70%, rgba(16, 185, 129, 0.38) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 40% at 20% 30%, rgba(5, 150, 105, 0.28) 0%, transparent 65%);
+  background-size: 200% 200%, 200% 200%;
+  animation: orb-1 14s ease-in-out infinite;
+}
+
+/* Secondary orb */
+body::after {
+  background:
+    radial-gradient(ellipse 55% 45% at 25% 20%, rgba(16, 185, 129, 0.22) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 55% at 80% 85%, rgba(6, 95, 70, 0.30) 0%, transparent 60%);
+  background-size: 200% 200%, 200% 200%;
+  animation: orb-2 18s ease-in-out infinite;
+}
+
+/* Light mode overrides */
+html.light body {
+  background-color: #f0fdf4;
+}
+html.light body::before {
+  background:
+    radial-gradient(ellipse 60% 50% at 75% 70%, rgba(16, 185, 129, 0.20) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 40% at 20% 30%, rgba(5, 150, 105, 0.14) 0%, transparent 65%);
+  background-size: 200% 200%, 200% 200%;
+  animation: orb-1 14s ease-in-out infinite;
+}
+html.light body::after {
+  background:
+    radial-gradient(ellipse 55% 45% at 25% 20%, rgba(16, 185, 129, 0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 55% at 80% 85%, rgba(6, 95, 70, 0.16) 0%, transparent 60%);
+  background-size: 200% 200%, 200% 200%;
+  animation: orb-2 18s ease-in-out infinite;
+}
+
+/* Make sure page content sits above the orb layer without trapping fixed elements */
+#__next,
+main {
+  position: relative;
+  z-index: 1;
 }
 
 section {

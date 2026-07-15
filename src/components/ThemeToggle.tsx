@@ -42,8 +42,9 @@ const ThemeToggle = () => {
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: showBackToTop ? 1 : 0, scale: showBackToTop ? 1 : 0.5 }}
                     onClick={scrollToTop}
-                    className="p-3 rounded-full bg-[var(--background)] border border-[var(--border-color)] shadow-lg hover:border-[var(--accent)] transition-all group"
+                    className="p-3 rounded-full bg-[var(--card-bg)] border border-[var(--border-color)] shadow-lg hover:border-[var(--accent)] transition-all group"
                     aria-label="Back to top"
+                    style={{ pointerEvents: showBackToTop ? 'auto' : 'none' }}
                 >
                     <ArrowUp size={20} className="text-[var(--text-secondary)] group-hover:text-[var(--accent)]" />
                 </motion.button>
@@ -51,7 +52,7 @@ const ThemeToggle = () => {
                 {/* Theme Toggle */}
                 <button
                     onClick={toggleTheme}
-                    className="p-3 rounded-full bg-[var(--background)] border border-[var(--border-color)] shadow-lg hover:border-[var(--accent)] transition-all group relative overflow-hidden"
+                    className="p-3 rounded-full bg-[var(--card-bg)] border border-[var(--border-color)] shadow-lg hover:border-[var(--accent)] transition-all group relative overflow-hidden"
                     aria-label="Toggle theme"
                 >
                     <div className="relative z-10">

@@ -145,8 +145,14 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${bungee.variable} ${jakarta.variable} ${unbounded.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${bungee.variable} ${jakarta.variable} ${unbounded.variable}`}>
       <head>
+        {/* Blocking script – runs before first paint to avoid flash of wrong theme */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('portfolio-theme');if(t==='light'){document.documentElement.classList.add('light')}else{document.documentElement.classList.add('dark')}}catch(e){}})()`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
